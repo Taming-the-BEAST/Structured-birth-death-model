@@ -36,7 +36,12 @@ You can easily install this package via BEAUti's package manager.  To do this, f
 2. From the *File* menu, select *Manage packages*.
 3. Find "bdmm" in the list of packages shown, select it and then click "Install/Upgrade":
 
-[[figures/1-install-bdmm.png|width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/1-install-bdmm.png" alt="">
+	<figcaption>Figure 1:  %}.</figcaption>
+</figure>
+<br>
 
 (Note the actual version of bdmm may differ from the version shown in
 the figure. This is normal.)
@@ -49,11 +54,19 @@ Finally, **restart BEAUti.**  This is very important.  Strange behaviour may res
 
 A BEAUTI template defines the basic structure and contents of your XML file. Because by default BEAUTI will construct an XML file with standard BEAST trees, rather than MultiTypeTrees, we cannot use the default template (Standard.xml). Hence, from the *File* menu, select *Template* and then choose *MultiTypeBirthDeath*. 
 
-[[figures/2-choose-bdmm-template.png |width=300px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/2-choose-bdmm-template.png" alt="">
+	<figcaption>Figure 1:  %}.</figcaption>
+</figure>
+<br>
+
+
 
 ## Loading the data
 
 Once the template is loaded, we can load in our example sequence data.  In our case, this data is stored in a FASTA file, the first few lines of which look like this:
+
 ```
 > EU856841_HongKong_2005.34246575
 -----------GGGATAATTCTATTAACCATGAAGACTATCATTGCTTTGAGCTACATTT
