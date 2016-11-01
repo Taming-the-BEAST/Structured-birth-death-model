@@ -36,7 +36,7 @@ You can easily install this package via BEAUti's package manager.  To do this, f
 2. From the *File* menu, select *Manage packages*.
 3. Find "bdmm" in the list of packages shown, select it and then click "Install/Upgrade":
 
-[[screens/1-install-bdmm.png|width=600px]]
+[[figures/1-install-bdmm.png|width=600px]]
 
 (Note the actual version of bdmm may differ from the version shown in
 the figure. This is normal.)
@@ -49,7 +49,7 @@ Finally, **restart BEAUti.**  This is very important.  Strange behaviour may res
 
 A BEAUTI template defines the basic structure and contents of your XML file. Because by default BEAUTI will construct an XML file with standard BEAST trees, rather than MultiTypeTrees, we cannot use the default template (Standard.xml). Hence, from the *File* menu, select *Template* and then choose *MultiTypeBirthDeath*. 
 
-[[screens/2-choose-bdmm-template.png |width=300px]]
+[[figures/2-choose-bdmm-template.png |width=300px]]
 
 ## Loading the data
 
@@ -84,7 +84,7 @@ distributed with MultiTypeTree.  To make this easy to find, open the *File*
 menu and select *Set working dir*.  Then, from the submenu that appears, select
 *MultiTypeTree*.
 
-[[screens/3-set-working-dir.png |width=300px]]
+[[figures/3-set-working-dir.png |width=300px]]
 
 (This step is not required when loading your own data.)
 
@@ -95,7 +95,7 @@ the working directory, this can be found in the `examples/` directory shown
 when the file selection dialog box loads.
 
 Once this file is loaded, your BEAUti screen should look something like the following:
-[[screens/4-alignment-loaded.png |width=600px]]
+[[figures/4-alignment-loaded.png |width=600px]]
 
 ## Setting up dates
 
@@ -111,14 +111,14 @@ Once the data is loaded, the next step is to specify the times at which the sequ
    button and select "after last" from the drop-down menu. (Note that the
    underscore character is already chosen as the delimiter.)
 
-[[screens/5-tip-dates.png |width=600px]]
+[[figures/5-tip-dates.png |width=600px]]
 
 After clicking "OK" you should find that the tip date table is populated with
 times that match those in the sequence headers, and that the last column of the
 table contains "heights" (times before most recent sample) calculated from the
 times:
 
-[[screens/5b-tip-dates-set.png |width=600px]]
+[[figures/5b-tip-dates-set.png |width=600px]]
 
 ## Setting up locations
 
@@ -135,12 +135,12 @@ to set the sample times:
    radio button and select group 2 from the drop-down menu.  (Note again that the
    underscore character is already chosen as the delimiter.)
 
-[[screens/6-tip-types.png |width=600px]]
+[[figures/6-tip-types.png |width=600px]]
 
 After clicking "OK" you should find that the tip location table is populated
 with locations that match those in the sequence headers, as follows:
 
-[[screens/6b-tip-types-set.png |width=600px]]
+[[figures/6b-tip-types-set.png |width=600px]]
 
 ## Substitution model
 
@@ -148,7 +148,7 @@ For this analysis, we will use the HKY substitution model with 4 gamma categorie
 
 The BEAUti panel should now look like the following:
 
-[[screens/7-sitemodel.png |width=600px]]
+[[figures/7-sitemodel.png |width=600px]]
 
 Note that the "Substitution rate" defined on this panel should be left
 non-estimated - we use the "Clock rate" defined in the "Clock Model" panel to
@@ -163,7 +163,7 @@ sequences sampled at different times and those times are measured in years, we
 must use a real clock rate expressed in units of expected substitutions per
 site per year.  Usually the precise value is unknown and so the default behaviour of BEAUti is to assume this rate is to be estimated.  We set the clock rate to 0.005, which we know is much closer to the truth than the default 1, to speed up mixing. The Clock Model panel should now look like this:
 
-[[screens/8-strict-clock.png|width=600px]]
+[[figures/8-strict-clock.png|width=600px]]
 
 ## Adjusting Priors
 
@@ -172,11 +172,11 @@ Because bdmm is a model-based prior on the (multi-type) tree distribution, setti
 It is important to change the time at which sampling started, counting from the time of the last sample. In our case, the time between the first and last sample is 5.57 (rounded UP). Note, that the sampling proportion has 4 entries, let's call them [s11,s12,s21,s22]. The values s11 and s12 belong to type 1 (HongKong) and s21, s22 belong to type 2 (New Zealand). The values s11 and s21 belong to the first interval, which is the time before the first sample, which is why s11=s21=0. 
 
 
-[[screens/9-priors.png |width=600px]]
+[[figures/9-priors.png |width=600px]]
 
 When you expand the tree prior element, you can change the condition on survival setting. We'll leave the box checked. 
 
-[[screens/9b-condition.png |width=600px]]
+[[figures/9b-condition.png |width=600px]]
 
 Ensure the value shown in the "State Number" spinner is equal to the
    number of types present in your model. In this case, the default value of 2
@@ -185,7 +185,7 @@ Ensure the value shown in the "State Number" spinner is equal to the
 Click the arrows on the left-hand side of each parameter to alter
    the details of these priors. For example, we will set the rateMatrix prior distribution to Exp(1):
 
-[[screens/9d-prior-rateMatrix.png |width=600px]]
+[[figures/9d-prior-rateMatrix.png |width=600px]]
 
 We will use the default set-up for the MCMC and save our file as usual. 
 
@@ -234,7 +234,7 @@ The panels tabs at the top-right of the window can be used to display one or
 more selected traces in various ways.  For example, selecting the two R0 traces and choosing the "Marginal prob distribution" panel results in the following useful comparison between the sampled population size
 marginal posterior distributions:
 
-[[screens/tracer-R0.png]]
+[[figures/tracer-R0.png]]
 
 Note that some of the ESS values are still less than 200 - the arbitrary
 threshold for acceptability. If this analysis were part of a serious study you
@@ -279,7 +279,7 @@ and "Axis > Age" from the same menu.
 The following shows the final tree of `h3n2-bdmm-v2-samplingPrior.h3n2_2deme.map.trees` in IcyTree, which
 represents our sampled estimate of the MAP multi-type tree:
 
-[[screens/icyTreeMAP.png]]
+[[figures/icyTreeMAP.png]]
 
 While IcyTree is useful for rapidly visualizing the results of an analysis, it
 is not nearly as feature-rich as FigTree and not as capable for producing
@@ -305,7 +305,7 @@ simply load TreeAnnotator and select the `typedNode` tree file as
 the input file and `h3n2-bdmm-v2-samplingPrior.h3n2_2deme.summary.trees` as the output file.  Select "Mean
 heights" from the "Node heights" menu and set the burn-in percentage to 10:
 
-[[screens/treeannotator.png]]
+[[figures/treeannotator.png]]
 
 Pressing the "Run" button will now produce an annotated summary tree.
 
@@ -323,7 +323,7 @@ colour decreases.
 Once these style preferences have been set, you should see something similar to
 the following:
 
-[[screens/icyTreeSummary.png]]
+[[figures/icyTreeSummary.png]]
 
 Here we have a full consensus tree annotated by the locations at coalescence
 nodes and showing node height uncertainty, with the widths of the edges
