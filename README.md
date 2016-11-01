@@ -114,6 +114,7 @@ the working directory, this can be found in the `examples/` directory shown
 when the file selection dialog box loads.
 
 Once this file is loaded, your BEAUti screen should look something like the following:
+
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/4-alignment-loaded.png" alt="">
@@ -431,18 +432,16 @@ Zealand origin.
 
 # Useful Links
 
-- [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file Tutorial-Template/master_refs.bib %}
+- [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file Structured-birth-death-model/master_refs.bib %}
+- [Multi-type birth-death process package](https://github.com/denisekuehnert/bdmm) {% cite Kuhnert2016 --file Structured-birth-death-model/master_refs.bib %}
 - BEAST 2 website and documentation: [http://www.beast2.org/](http://www.beast2.org/)
-- BEAST 1 website and documentation: [http://beast.bio.ed.ac.uk](http://beast.bio.ed.ac.uk)
-- Join the BEAST user discussion: [http://groups.google.com/group/beast-users](http://groups.google.com/group/beast-users) 
 
 ----
 
-This tutorial was written by Author Name for [Taming the BEAST](https://taming-the-beast.github.io) and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
+This tutorial was written by Denise Kühnert for [Taming the BEAST](https://taming-the-beast.github.io) and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 ----
 
 # Relevant References
 
-{% bibliography --cited --file Tutorial-Template/master_refs %}
-
+{% bibliography --cited --file Structured-birth-death-model/master_refs %}
