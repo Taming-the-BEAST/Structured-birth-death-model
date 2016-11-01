@@ -84,7 +84,7 @@ distributed with MultiTypeTree.  To make this easy to find, open the *File*
 menu and select *Set working dir*.  Then, from the submenu that appears, select
 *MultiTypeTree*.
 
-[[figures/3-set-working-dir.png |width=300px]]
+![[figures/3-set-working-dir.png |width=300px]]
 
 (This step is not required when loading your own data.)
 
