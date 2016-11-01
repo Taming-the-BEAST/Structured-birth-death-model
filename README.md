@@ -39,7 +39,7 @@ You can easily install this package via BEAUti's package manager.  To do this, f
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/1-install-bdmm.png" alt="">
-	<figcaption>Figure 1:  %}.</figcaption>
+	<!--figcaption>Figure 1:.</figcaption-->
 </figure>
 <br>
 
@@ -56,8 +56,8 @@ A BEAUTI template defines the basic structure and contents of your XML file. Bec
 
 <figure>
 	<a id="fig:"></a>
-	<img src="figures/2-choose-bdmm-template.png" alt="">
-	<figcaption>Figure 1:  %}.</figcaption>
+	<img style="width:50%;" src="figures/2-choose-bdmm-template.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
 </figure>
 <br>
 
@@ -97,7 +97,13 @@ distributed with MultiTypeTree.  To make this easy to find, open the *File*
 menu and select *Set working dir*.  Then, from the submenu that appears, select
 *MultiTypeTree*.
 
-![[figures/3-set-working-dir.png |width=300px]]
+<figure>
+	<a id="fig:"></a>
+	<img style="width:50%;" src="figures/3-set-working-dir.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
+
 
 (This step is not required when loading your own data.)
 
@@ -108,7 +114,12 @@ the working directory, this can be found in the `examples/` directory shown
 when the file selection dialog box loads.
 
 Once this file is loaded, your BEAUti screen should look something like the following:
-[[figures/4-alignment-loaded.png |width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/4-alignment-loaded.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 ## Setting up dates
 
@@ -124,14 +135,24 @@ Once the data is loaded, the next step is to specify the times at which the sequ
    button and select "after last" from the drop-down menu. (Note that the
    underscore character is already chosen as the delimiter.)
 
-[[figures/5-tip-dates.png |width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/5-tip-dates.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 After clicking "OK" you should find that the tip date table is populated with
 times that match those in the sequence headers, and that the last column of the
 table contains "heights" (times before most recent sample) calculated from the
 times:
 
-[[figures/5b-tip-dates-set.png |width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/5b-tip-dates-set.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 ## Setting up locations
 
@@ -148,12 +169,22 @@ to set the sample times:
    radio button and select group 2 from the drop-down menu.  (Note again that the
    underscore character is already chosen as the delimiter.)
 
-[[figures/6-tip-types.png |width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/6-tip-types.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 After clicking "OK" you should find that the tip location table is populated
 with locations that match those in the sequence headers, as follows:
 
-[[figures/6b-tip-types-set.png |width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/6b-tip-types-set.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 ## Substitution model
 
@@ -161,7 +192,12 @@ For this analysis, we will use the HKY substitution model with 4 gamma categorie
 
 The BEAUti panel should now look like the following:
 
-[[figures/7-sitemodel.png |width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/7-sitemodel.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 Note that the "Substitution rate" defined on this panel should be left
 non-estimated - we use the "Clock rate" defined in the "Clock Model" panel to
@@ -176,7 +212,12 @@ sequences sampled at different times and those times are measured in years, we
 must use a real clock rate expressed in units of expected substitutions per
 site per year.  Usually the precise value is unknown and so the default behaviour of BEAUti is to assume this rate is to be estimated.  We set the clock rate to 0.005, which we know is much closer to the truth than the default 1, to speed up mixing. The Clock Model panel should now look like this:
 
-[[figures/8-strict-clock.png|width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/8-strict-clock.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 ## Adjusting Priors
 
@@ -185,11 +226,21 @@ Because bdmm is a model-based prior on the (multi-type) tree distribution, setti
 It is important to change the time at which sampling started, counting from the time of the last sample. In our case, the time between the first and last sample is 5.57 (rounded UP). Note, that the sampling proportion has 4 entries, let's call them [s11,s12,s21,s22]. The values s11 and s12 belong to type 1 (HongKong) and s21, s22 belong to type 2 (New Zealand). The values s11 and s21 belong to the first interval, which is the time before the first sample, which is why s11=s21=0. 
 
 
-[[figures/9-priors.png |width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/9-priors.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 When you expand the tree prior element, you can change the condition on survival setting. We'll leave the box checked. 
 
-[[figures/9b-condition.png |width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/9b-condition.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 Ensure the value shown in the "State Number" spinner is equal to the
    number of types present in your model. In this case, the default value of 2
@@ -198,7 +249,12 @@ Ensure the value shown in the "State Number" spinner is equal to the
 Click the arrows on the left-hand side of each parameter to alter
    the details of these priors. For example, we will set the rateMatrix prior distribution to Exp(1):
 
-[[figures/9d-prior-rateMatrix.png |width=600px]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/9d-prior-rateMatrix.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 We will use the default set-up for the MCMC and save our file as usual. 
 
@@ -209,10 +265,6 @@ To run the analysis, simply start BEAST 2 in the manner appropriate for your
 platform, then select the file you generated in the last section as the input
 file.  (Refer to the documentation provided at
 [www.beast2.org](http://www.beast2.org/) for detailed instructions.)
-
-Since the analysis will take a while, please
-[[download the final log files|http://github.com/denisekuehnert/bdmm/wiki/logs/h3n2-bdmm-analysis-files.zip]] and use them to complete the
-tutorial.
 
 # Analyzing the results
 
@@ -247,7 +299,12 @@ The panels tabs at the top-right of the window can be used to display one or
 more selected traces in various ways.  For example, selecting the two R0 traces and choosing the "Marginal prob distribution" panel results in the following useful comparison between the sampled population size
 marginal posterior distributions:
 
-[[figures/tracer-R0.png]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/tracer-R0.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 Note that some of the ESS values are still less than 200 - the arbitrary
 threshold for acceptability. If this analysis were part of a serious study you
@@ -292,7 +349,12 @@ and "Axis > Age" from the same menu.
 The following shows the final tree of `h3n2-bdmm-v2-samplingPrior.h3n2_2deme.map.trees` in IcyTree, which
 represents our sampled estimate of the MAP multi-type tree:
 
-[[figures/icyTreeMAP.png]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/icyTreeMAP.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 While IcyTree is useful for rapidly visualizing the results of an analysis, it
 is not nearly as feature-rich as FigTree and not as capable for producing
@@ -318,7 +380,12 @@ simply load TreeAnnotator and select the `typedNode` tree file as
 the input file and `h3n2-bdmm-v2-samplingPrior.h3n2_2deme.summary.trees` as the output file.  Select "Mean
 heights" from the "Node heights" menu and set the burn-in percentage to 10:
 
-[[figures/treeannotator.png]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/treeannotator.png" alt="">
+	<!--figcaption>Figure 1: .</figcaption-->
+</figure>
+<br>
 
 Pressing the "Run" button will now produce an annotated summary tree.
 
@@ -336,7 +403,12 @@ colour decreases.
 Once these style preferences have been set, you should see something similar to
 the following:
 
-[[figures/icyTreeSummary.png]]
+<figure>
+	<a id="fig:"></a>
+	<img src="figures/icyTreeSummary.png" alt="">
+	<!--figcaption>Figure 1:.</figcaption-->
+</figure>
+<br>
 
 Here we have a full consensus tree annotated by the locations at coalescence
 nodes and showing node height uncertainty, with the widths of the edges
