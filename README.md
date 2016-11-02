@@ -13,7 +13,7 @@ model.
 
 
 The data set used in this tutorial is a thinned (60 sequence) subset of the
-(980 sequence) data set used in the publication {% cite Vaughan2014 --file master_refs.bib %}, which in turn was
+(980 sequence) data set used in the publication {% cite Vaughan2014 --file Structured-birth-death-model/master_refs.bib %}, which in turn was
 assembled from publicly-available data sets provided by various authors on
 [GenBank](http://www.ncbi.nlm.nih.gov/genbank/).
 
