@@ -1,6 +1,8 @@
 ---
 author: Denise Kühnert
 level: Professional
+title: Structured birth death model
+subtitle: Population structure using the multi-type birth-death model
 ---
 
 
@@ -14,7 +16,7 @@ model.
 
 
 The data set used in this tutorial is a thinned (60 sequence) subset of the
-(980 sequence) data set used in the publication {% cite Vaughan2014 --file Structured-birth-death-model/master_refs.bib %}, which in turn was
+(980 sequence) data set used in the publication {% cite Vaughan2014 --file Structured-birth-death-model/master-refs.bib %}, which in turn was
 assembled from publicly-available data sets provided by various authors on
 [GenBank](http://www.ncbi.nlm.nih.gov/genbank/).
 
@@ -38,7 +40,7 @@ You can easily install this package via BEAUti's package manager.  To do this, f
 
 <figure>
 	<a id="fig:"></a>
-	<img src="figures/1-install-bdmm.png" alt="">
+	<img style="width:75%;" src="figures/1-install-bdmm.png" alt="">
 	<!--figcaption>Figure 1:.</figcaption-->
 </figure>
 <br>
@@ -383,7 +385,7 @@ heights" from the "Node heights" menu and set the burn-in percentage to 10:
 
 <figure>
 	<a id="fig:"></a>
-	<img src="figures/treeannotator.png" alt="">
+	<img style="width:50%;" src="figures/treeannotator.png" alt="">
 	<!--figcaption>Figure 1: .</figcaption-->
 </figure>
 <br>
@@ -432,16 +434,12 @@ Zealand origin.
 
 # Useful Links
 
-- [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file Structured-birth-death-model/master_refs.bib %}
-- [Multi-type birth-death process package](https://github.com/denisekuehnert/bdmm) {% cite Kuhnert2016 --file Structured-birth-death-model/master_refs.bib %}
+- [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file Structured-birth-death-model/master-refs.bib %}
+- [Multi-type birth-death process package](https://github.com/denisekuehnert/bdmm) {% cite Kuhnert2016 --file Structured-birth-death-model/master-refs.bib %}
 - BEAST 2 website and documentation: [http://www.beast2.org/](http://www.beast2.org/)
-
-----
-
-This tutorial was written by Denise Kühnert for [Taming the BEAST](https://taming-the-beast.github.io) and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). 
 
 ----
 
 # Relevant References
 
-{% bibliography --cited --file Structured-birth-death-model/master_refs %}
+{% bibliography --cited --file Structured-birth-death-model/master-refs %}
