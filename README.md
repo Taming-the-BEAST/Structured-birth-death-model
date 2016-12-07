@@ -41,7 +41,7 @@ You can easily install this package via BEAUti's package manager.  To do this, f
 <figure>
 	<a id="fig:"></a>
 	<img style="width:75%;" src="figures/1-install-bdmm.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 1: Install bdmm.</figcaption>
 </figure>
 <br>
 
@@ -59,7 +59,7 @@ A BEAUTI template defines the basic structure and contents of your XML file. Bec
 <figure>
 	<a id="fig:"></a>
 	<img style="width:50%;" src="figures/2-choose-bdmm-template.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 2: Load the MultiTypeBirthDeath template.</figcaption-->
 </figure>
 <br>
 
@@ -102,10 +102,9 @@ menu and select *Set working dir*.  Then, from the submenu that appears, select
 <figure>
 	<a id="fig:"></a>
 	<img style="width:50%;" src="figures/3-set-working-dir.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 3: Set the working directory to MultiTypeTree.</figcaption>
 </figure>
 <br>
-
 
 (This step is not required when loading your own data.)
 
@@ -120,7 +119,7 @@ Once this file is loaded, your BEAUti screen should look something like the foll
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/4-alignment-loaded.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 4: The alignment loaded into BEAUti.</figcaption>
 </figure>
 <br>
 
@@ -141,7 +140,7 @@ Once the data is loaded, the next step is to specify the times at which the sequ
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/5-tip-dates.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 5: Guessing the tip-dates.</figcaption-->
 </figure>
 <br>
 
@@ -153,7 +152,7 @@ times:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/5b-tip-dates-set.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 6: Sampling dates in BEAUti.</figcaption-->
 </figure>
 <br>
 
@@ -175,7 +174,7 @@ to set the sample times:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/6-tip-types.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 7: Guessing the locations.</figcaption>
 </figure>
 <br>
 
@@ -185,20 +184,20 @@ with locations that match those in the sequence headers, as follows:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/6b-tip-types-set.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 8: The locations in BEAUti.</figcaption>
 </figure>
 <br>
 
 ## Substitution model
 
-For this analysis, we will use the HKY substitution model with 4 gamma categories and estimated base frequencies. To configure this in BEAUti, switch to the "Site Model" panel, change the number of gamma categories and select HKY from the drop-down menu (the default option is JC69). We also want the proportionInvariant parameter to be nonzero and estimated to account for invariant sites in our alignment. 
+For this analysis, we will use the HKY substitution model with 4 gamma categories and estimated base frequencies. To configure this in BEAUti, switch to the "Site Model" panel, change the number of gamma categories and select HKY from the drop-down menu (the default option is JC69). We also want the shape and proportionInvariant parameters to be nonzero and estimated to account for heterogeneity between sites in our alignment. 
 
 The BEAUti panel should now look like the following:
 
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/7-sitemodel.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 9: Setup of the site model.</figcaption-->
 </figure>
 <br>
 
@@ -218,7 +217,7 @@ site per year.  Usually the precise value is unknown and so the default behaviou
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/8-strict-clock.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 10: Fix the clock rate to speed up mixing.</figcaption-->
 </figure>
 <br>
 
@@ -232,7 +231,7 @@ It is important to change the time at which sampling started, counting from the 
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/9-priors.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 11: Set the change time for the sampling proportion so it is zero before the time of the first sample.</figcaption-->
 </figure>
 <br>
 
@@ -241,7 +240,7 @@ When you expand the tree prior element, you can change the condition on survival
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/9b-condition.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 11: Condition on survival.</figcaption-->
 </figure>
 <br>
 
@@ -255,7 +254,7 @@ Click the arrows on the left-hand side of each parameter to alter
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/9d-prior-rateMatrix.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 12: Set the prior for the rate matrix.</figcaption-->
 </figure>
 <br>
 
@@ -305,7 +304,7 @@ marginal posterior distributions:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/tracer-R0.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 13: Estimated {% eqinline R_0 %} marginal posteriors.</figcaption-->
 </figure>
 <br>
 
@@ -355,7 +354,7 @@ represents our sampled estimate of the MAP multi-type tree:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/icyTreeMAP.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 14: The MAP multi-type tree in IcyTree.</figcaption-->
 </figure>
 <br>
 
@@ -386,7 +385,7 @@ heights" from the "Node heights" menu and set the burn-in percentage to 10:
 <figure>
 	<a id="fig:"></a>
 	<img style="width:50%;" src="figures/treeannotator.png" alt="">
-	<!--figcaption>Figure 1: .</figcaption-->
+	<figcaption>Figure 15: Use TreeAnnotator to produce a summary tree.</figcaption-->
 </figure>
 <br>
 
@@ -409,7 +408,7 @@ the following:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/icyTreeSummary.png" alt="">
-	<!--figcaption>Figure 1:.</figcaption-->
+	<figcaption>Figure 16: The summary tree in IcyTree.</figcaption-->
 </figure>
 <br>
 
