@@ -59,7 +59,7 @@ A BEAUTI template defines the basic structure and contents of your XML file. Bec
 <figure>
 	<a id="fig:"></a>
 	<img style="width:50%;" src="figures/2-choose-bdmm-template.png" alt="">
-	<figcaption>Figure 2: Load the MultiTypeBirthDeath template.</figcaption-->
+	<figcaption>Figure 2: Load the MultiTypeBirthDeath template.</figcaption>
 </figure>
 <br>
 
@@ -140,7 +140,7 @@ Once the data is loaded, the next step is to specify the times at which the sequ
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/5-tip-dates.png" alt="">
-	<figcaption>Figure 5: Guessing the tip-dates.</figcaption-->
+	<figcaption>Figure 5: Guessing the tip-dates.</figcaption>
 </figure>
 <br>
 
@@ -152,7 +152,7 @@ times:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/5b-tip-dates-set.png" alt="">
-	<figcaption>Figure 6: Sampling dates in BEAUti.</figcaption-->
+	<figcaption>Figure 6: Sampling dates in BEAUti.</figcaption>
 </figure>
 <br>
 
@@ -197,7 +197,7 @@ The BEAUti panel should now look like the following:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/7-sitemodel.png" alt="">
-	<figcaption>Figure 9: Setup of the site model.</figcaption-->
+	<figcaption>Figure 9: Setup of the site model.</figcaption>
 </figure>
 <br>
 
@@ -217,7 +217,7 @@ site per year.  Usually the precise value is unknown and so the default behaviou
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/8-strict-clock.png" alt="">
-	<figcaption>Figure 10: Fix the clock rate to speed up mixing.</figcaption-->
+	<figcaption>Figure 10: Fix the clock rate to speed up mixing.</figcaption>
 </figure>
 <br>
 
@@ -231,7 +231,7 @@ It is important to change the time at which sampling started, counting from the 
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/9-priors.png" alt="">
-	<figcaption>Figure 11: Set the change time for the sampling proportion so it is zero before the time of the first sample.</figcaption-->
+	<figcaption>Figure 11: Set the change time for the sampling proportion so it is zero before the time of the first sample.</figcaption>
 </figure>
 <br>
 
@@ -240,7 +240,7 @@ When you expand the tree prior element, you can change the condition on survival
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/9b-condition.png" alt="">
-	<figcaption>Figure 11: Condition on survival.</figcaption-->
+	<figcaption>Figure 11: Condition on survival.</figcaption>
 </figure>
 <br>
 
@@ -254,7 +254,7 @@ Click the arrows on the left-hand side of each parameter to alter
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/9d-prior-rateMatrix.png" alt="">
-	<figcaption>Figure 12: Set the prior for the rate matrix.</figcaption-->
+	<figcaption>Figure 12: Set the prior for the rate matrix.</figcaption>
 </figure>
 <br>
 
@@ -304,7 +304,7 @@ marginal posterior distributions:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/tracer-R0.png" alt="">
-	<figcaption>Figure 13: Estimated {% eqinline R_0 %} marginal posteriors.</figcaption-->
+	<figcaption>Figure 13: Estimated {% eqinline R_0 %} marginal posteriors.</figcaption>
 </figure>
 <br>
 
@@ -354,7 +354,7 @@ represents our sampled estimate of the MAP multi-type tree:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/icyTreeMAP.png" alt="">
-	<figcaption>Figure 14: The MAP multi-type tree in IcyTree.</figcaption-->
+	<figcaption>Figure 14: The MAP multi-type tree in IcyTree.</figcaption>
 </figure>
 <br>
 
@@ -385,7 +385,7 @@ heights" from the "Node heights" menu and set the burn-in percentage to 10:
 <figure>
 	<a id="fig:"></a>
 	<img style="width:50%;" src="figures/treeannotator.png" alt="">
-	<figcaption>Figure 15: Use TreeAnnotator to produce a summary tree.</figcaption-->
+	<figcaption>Figure 15: Use TreeAnnotator to produce a summary tree.</figcaption>
 </figure>
 <br>
 
@@ -408,7 +408,7 @@ the following:
 <figure>
 	<a id="fig:"></a>
 	<img src="figures/icyTreeSummary.png" alt="">
-	<figcaption>Figure 16: The summary tree in IcyTree.</figcaption-->
+	<figcaption>Figure 16: The summary tree in IcyTree.</figcaption>
 </figure>
 <br>
 
@@ -433,12 +433,12 @@ Zealand origin.
 
 # Useful Links
 
-- [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file Structured-birth-death-model/master-refs.bib %}
-- [Multi-type birth-death process package](https://github.com/denisekuehnert/bdmm) {% cite Kuhnert2016 --file Structured-birth-death-model/master-refs.bib %}
+- [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file Structured-birth-death-model/refs.bib %}
+- [Multi-type birth-death process package](https://github.com/denisekuehnert/bdmm) {% cite Kuhnert2016 --file Structured-birth-death-model/refs.bib %}
 - BEAST 2 website and documentation: [http://www.beast2.org/](http://www.beast2.org/)
 
 ----
 
 # Relevant References
 
-{% bibliography --cited --file Structured-birth-death-model/master-refs %}
+{% bibliography --cited --file Structured-birth-death-model/refs %}

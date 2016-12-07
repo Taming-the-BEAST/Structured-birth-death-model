@@ -5,7 +5,7 @@
 \input{preamble}
 
 % Add your bibtex library here
-\addbibresource{master-refs}
+\addbibresource{refs}
 
 
 %%%%%%%%%%%%%%%%%%%%
@@ -93,6 +93,7 @@ this, follow these steps:
 \begin{figure}
     \centering
     \includegraphics[width=0.750000\textwidth]{figures/1-install-bdmm.png}
+    \caption{Install bdmm.}
     \label{fig:}
 \end{figure}
 
@@ -116,6 +117,7 @@ template (Standard.xml). Hence, from the \emph{File} menu, select
 \begin{figure}
     \centering
     \includegraphics[width=0.500000\textwidth]{figures/2-choose-bdmm-template.png}
+    \caption{Load the MultiTypeBirthDeath template.}
     \label{fig:}
 \end{figure}
 
@@ -159,6 +161,7 @@ submenu that appears, select \emph{MultiTypeTree}.
 \begin{figure}
     \centering
     \includegraphics[width=0.500000\textwidth]{figures/3-set-working-dir.png}
+    \caption{Set the working directory to MultiTypeTree.}
     \label{fig:}
 \end{figure}
 
@@ -177,6 +180,7 @@ the following:
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/4-alignment-loaded.png}
+    \caption{The alignment loaded into BEAUti.}
     \label{fig:}
 \end{figure}
 
@@ -206,6 +210,7 @@ the sequences were sampled:
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/5-tip-dates.png}
+    \caption{Guessing the tip-dates.}
     \label{fig:}
 \end{figure}
 
@@ -217,6 +222,7 @@ recent sample) calculated from the times:
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/5b-tip-dates-set.png}
+    \caption{Sampling dates in BEAUti.}
     \label{fig:}
 \end{figure}
 
@@ -245,6 +251,7 @@ steps to those we used to set the sample times:
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/6-tip-types.png}
+    \caption{Guessing the locations.}
     \label{fig:}
 \end{figure}
 
@@ -255,6 +262,7 @@ follows:
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/6b-tip-types-set.png}
+    \caption{The locations in BEAUti.}
     \label{fig:}
 \end{figure}
 
@@ -264,14 +272,16 @@ For this analysis, we will use the HKY substitution model with 4 gamma
 categories and estimated base frequencies. To configure this in BEAUti,
 switch to the ``Site Model'' panel, change the number of gamma
 categories and select HKY from the drop-down menu (the default option is
-JC69). We also want the proportionInvariant parameter to be nonzero and
-estimated to account for invariant sites in our alignment.
+JC69). We also want the shape and proportionInvariant parameters to be
+nonzero and estimated to account for heterogeneity between sites in our
+alignment.
 
 The BEAUti panel should now look like the following:
 
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/7-sitemodel.png}
+    \caption{Setup of the site model.}
     \label{fig:}
 \end{figure}
 
@@ -296,6 +306,7 @@ panel should now look like this:
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/8-strict-clock.png}
+    \caption{Fix the clock rate to speed up mixing.}
     \label{fig:}
 \end{figure}
 
@@ -317,6 +328,7 @@ s11=s21=0.
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/9-priors.png}
+    \caption{Set the change time for the sampling proportion so it is zero before the time of the first sample.}
     \label{fig:}
 \end{figure}
 
@@ -326,6 +338,7 @@ survival setting. We'll leave the box checked.
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/9b-condition.png}
+    \caption{Condition on survival.}
     \label{fig:}
 \end{figure}
 
@@ -341,6 +354,7 @@ distribution to Exp(1):
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/9d-prior-rateMatrix.png}
+    \caption{Set the prior for the rate matrix.}
     \label{fig:}
 \end{figure}
 
@@ -413,6 +427,7 @@ population size marginal posterior distributions:
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/tracer-R0.png}
+    \caption{Estimated `$ R_0 $` marginal posteriors.}
     \label{fig:}
 \end{figure}
 
@@ -468,6 +483,7 @@ which represents our sampled estimate of the MAP multi-type tree:
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/icyTreeMAP.png}
+    \caption{The MAP multi-type tree in IcyTree.}
     \label{fig:}
 \end{figure}
 
@@ -503,6 +519,7 @@ set the burn-in percentage to 10:
 \begin{figure}
     \centering
     \includegraphics[width=0.500000\textwidth]{figures/treeannotator.png}
+    \caption{Use TreeAnnotator to produce a summary tree.}
     \label{fig:}
 \end{figure}
 
@@ -526,6 +543,7 @@ similar to the following:
 \begin{figure}
     \centering
     \includegraphics[max width=\textwidth, max height=0.9\textheight]{figures/icyTreeSummary.png}
+    \caption{The summary tree in IcyTree.}
     \label{fig:}
 \end{figure}
 
@@ -563,6 +581,7 @@ useful final notes from Tim}
   BEAST 2 website and documentation: \url{http://www.beast2.org/}
 \end{itemize}
 
+\clearpage
 
 
 
