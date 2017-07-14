@@ -124,7 +124,7 @@ Once the sequence file is loaded, your BEAUti screen should look similar to what
 
 <figure>
 	<a id="fig:alignment"></a>
-	<img src="figures/4-alignment-loaded.png" alt="">
+	<img style="width:100%;" src="figures/4-alignment-loaded.png" alt="">
 	<figcaption>Figure 4: The alignment loaded into BEAUti.</figcaption>
 </figure>
 <br>
@@ -143,7 +143,7 @@ The date parsing setup will look as shown in [Figure 5](#fig:tip-dates).
 
 <figure>
 	<a id="fig:tip-dates"></a>
-	<img style="width:75%;margin:auto;display:block;" src="figures/5-tip-dates.png" alt="">
+	<img style="width:100%;" style="width:75%;margin:auto;display:block;" src="figures/5-tip-dates.png" alt="">
 	<figcaption style="width:75%;margin:auto;display:block;">Figure 5: Guessing the tip dates.</figcaption>
 </figure>
 <br>
@@ -155,7 +155,7 @@ The BEAUTi panel should look as shown in [Figure 6](#fig:tip-dates).
 
 <figure>
 	<a id="fig:tip-dates-set"></a>
-	<img src="figures/6-tip-dates-set.png" alt="">
+	<img style="width:100%;" src="figures/6-tip-dates-set.png" alt="">
 	<figcaption>Figure 6: Sampling dates as seen in BEAUti.</figcaption>
 </figure>
 <br>
@@ -185,7 +185,7 @@ The BEAUTi panel should look as shown in [Figure 8](#fig:tip-types-set).
 
 <figure>
 	<a id="fig:tip-types-set"></a>
-	<img src="figures/8-tip-types-set.png" alt="">
+	<img style="width:100%;" src="figures/8-tip-types-set.png" alt="">
 	<figcaption>Figure 8: The locations in BEAUti.</figcaption>
 </figure>
 <br>
@@ -230,7 +230,7 @@ The `Clock Model` panel should now look as shown in [Figure 10](#fig:strict-cloc
 
 <figure>
 	<a id="fig:strict-clock"></a>
-	<img src="figures/10-strict-clock.png" alt="">
+	<img style="width:100%;" src="figures/10-strict-clock.png" alt="">
 	<figcaption>Figure 10: Fix the clock rate to speed up mixing.</figcaption>
 </figure>
 <br>
@@ -267,7 +267,7 @@ The final setup of the tree prior can be seen in [Figure 11](#fig:tree-prior).
 
 <figure>
 	<a id="fig:tree-prior"></a>
-	<img src="figures/11-tree-prior.png" alt="">
+	<img style="width:100%;" src="figures/11-tree-prior.png" alt="">
 	<figcaption>Figure 11: Set the change time for the sampling proportion so it is zero before the time of the first sample.</figcaption>
 </figure>
 <br>
@@ -316,7 +316,7 @@ For the purpose of this tutorial and given that we know little about the outbrea
 
 <figure>
 	<a id="fig:R0-prior"></a>
-	<img src="figures/12-R0-prior.png" alt="">
+	<img style="width:100%;" src="figures/12-R0-prior.png" alt="">
 	<figcaption>Figure 12: Set the prior for the R0.</figcaption>
 </figure>
 <br>
@@ -324,7 +324,7 @@ For the purpose of this tutorial and given that we know little about the outbrea
 
 <figure>
 	<a id="fig:bUR-prior"></a>
-	<img src="figures/13-bUR-prior.png" alt="">
+	<img style="width:100%;" src="figures/13-bUR-prior.png" alt="">
 	<figcaption>Figure 13: Set the prior for the rate of recovery.</figcaption>
 </figure>
 <br>
@@ -376,7 +376,7 @@ marginal posterior distributions:
 
 <figure>
 	<a id="fig:"></a>
-	<img src="figures/tracer-R0.png" alt="">
+	<img style="width:100%;" src="figures/tracer-R0.png" alt="">
 	<figcaption>Figure 13: Estimated {% eqinline R_0 %} marginal posteriors.</figcaption>
 </figure>
 <br>
@@ -426,7 +426,7 @@ represents our sampled estimate of the MAP multi-type tree:
 
 <figure>
 	<a id="fig:"></a>
-	<img src="figures/icyTreeMAP.png" alt="">
+	<img style="width:100%;" src="figures/icyTreeMAP.png" alt="">
 	<figcaption>Figure 14: The MAP multi-type tree in IcyTree.</figcaption>
 </figure>
 <br>
