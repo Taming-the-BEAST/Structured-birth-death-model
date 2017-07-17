@@ -301,16 +301,25 @@ Unfortunately, this means that some priors are very generic, and, moreover, some
 This means that while the default setup might work and the runs will eventually mix, it can happen that the values are 
 
 So, let us go through the important parameters and set priors according to the information we have about our dataset.
-The first important parameter is R0.
-In epidemiology, the basic reproduction number, R0, of an infection is the number of secondary cases one case generates on average over the course of its infectious period, in an otherwise uninfected population.
-Even though we do not have any information on R0 in the particular outbreak, infections rarely have R0 > 10, so we can set an upper limit on the sampled values.
+The first important parameter is R<sub>0</sub>.
+In epidemiology, the basic reproduction number, R<sub>0</sub>, of an infection is the number of secondary cases one case generates on average over the course of its infectious period, in an otherwise uninfected population.
+Even though we do not have any information on R<sub>0</sub> in the particular outbreak, infections rarely have R<sub>0</sub> > 10, so we can set an upper limit on the sampled values.
 To do so, in the line denoted `R0.t:h3n2_2deme` click the button captioned `initial = [2.0, 2.0] [0.0, Infinity]` to get a pop up settings window (see [Figure 12](#fig:R0-prior)), where you can set the upper value.
 Other than that, the current prior sets ther median value of the ditribution to e<sup>0</sup> = 1, which will fit the endemic case of influenza.
 <!--Should we also have multiple dimensions for R0 here?-->
 
 Next, we should adjust the prior for the rate of clearing the infection, which is labelled as `becomeUninfectiousRate.t:h3n2_2deme`.
 The value of the rate, say x, is the reciprocal of the average time a person with influenza is infectious, 1/x.
-Given that we know little about this particular epidemic, let us just assume that a person is infectious for at least 1 day and set the prior for this parameter to `Uniform` with the upper value of 365 (see Figure 13](#fig:bUR-prior)).
+From what we know about influenza we can say that an average infection lasts for about a week, however we would not want to impose too strong of a prior on this parameter.
+Let us change the distribution for this parameter to a `LogNormal` and tick the `Mean in Real Space` checkbox to make the setting easier.
+So, for a mean time of recovery of 7 days we need to set the mean of our distribution to 365/7 ≈ 52.14 (or to 52 for simplicity).
+Bear in mind that our time units are years, so we can not just set the rate to 1/7.
+This prior will ensure that we mainly sample realistic parameter values, but still gives BEAST2 quite a lot of freedom to go to extreme values if need be, as the 95% highest density interval for the prior is [4.44, 244], or [1.49, 82.21] infectious days.
+You can see the setup in [Figure 13](#fig:bUR-prior).
+
+Finally, we will also set the prior for the clock rate to a distribution that is in accordance with what we know about RNA viruses, which is that in general their mean substitution rate is around ≈ 10<sup>-3</sup>.
+We shall set the distribution for `clockRate.c:h3n2_2deme` to `Log Normal` with the mean of 0.001, with the `Mean in Real Space` checkbox checked.
+We will leave the `S` parameter (standard deviation) at the default value of 1.25 to allow BEAST2 a lot of freedom in case it is necessary.
 
 For the purpose of this tutorial and given that we know little about the outbreak in question, we will leave the other priors on the default values, but feel free to through the other priors yourself and verify their sensibility.
 
@@ -321,11 +330,17 @@ For the purpose of this tutorial and given that we know little about the outbrea
 </figure>
 <br>
 
-
 <figure>
 	<a id="fig:bUR-prior"></a>
 	<img style="width:100%;" src="figures/13-bUR-prior.png" alt="">
 	<figcaption>Figure 13: Set the prior for the rate of recovery.</figcaption>
+</figure>
+<br>
+
+<figure>
+	<a id="fig:clock-rate-prior"></a>
+	<img style="width:100%;" src="figures/14-clock-rate-prior.png" alt="">
+	<figcaption>Figure 14: Set the prior for the clock rate.</figcaption>
 </figure>
 <br>
 
@@ -356,148 +371,117 @@ we'll use to assemble a summary tree.
 
 ## Parameter log file analysis
 
-We can use the program [Tracer](http://tree.bio.ed.ac.uk/software/tracer/) to view the parameter log file. To do this, start Tracer and then press the `+` button in the top-left hand corner of the window (under `Trace files`).
-Select
-the log file for this analysis (`h3n2_2deme.log`) from the file selection dialog box.
+We can use the program [Tracer](http://tree.bio.ed.ac.uk/software/tracer/) to view the parameter log file.
+To do this, start Tracer and then press the `+` button in the top-left hand corner of the window (under `Trace files`).
+Select the log file for this analysis (`h3n2_2deme.log`) from the file selection dialog box.
+You can also simply drag your log file from the file browser to the Tracer window.
 The `Traces` table will then be populated with parameters and summary
 statistics corresponding to our multitype birth-death analysis.
 
 Important traces are:
-* `R0.t:h3n2_2deme1` and `R0.t:h3n2_2deme2`: These give the effective reproduction numbers for deme 1 (Hongkong) and 2 (New Zealand), respectively.
+* `R0.t:h3n2_2deme1` and `R0.t:h3n2_2deme2`: These give the effective reproduction numbers for deme 1 (Hong Kong) and 2 (New Zealand), respectively.
+
+* `becomeUninfectiousRate.t:h3n2_deme21` and `becomeUninfectiousRate.t:h3n2_deme22`: These are the rates of recovery for someone with flu in either of the locations.
 
 * `rateMatrix.t:h3n2_2deme1`	`rateMatrix.t:h3n2_2deme2`: These give the (per lineage per year) migration rates from deme 1 to 2 and vice versa.
 
-* `Tree.t:h3n2_2deme.count_HongKong_to_NewZealand`: these give the actual number of ancestral
-  migrations from HongKong to New Zealand.
+* `Tree.t:h3n2_2deme.count_HongKong_to_NewZealand`: these give the actual number of ancestral migrations from Hong Kong to New Zealand.
 
-The panels tabs at the top-right of the window can be used to display one or
-more selected traces in various ways.  For example, selecting the two R0 traces and choosing the "Marginal prob distribution" panel results in the following useful comparison between the sampled population size
-marginal posterior distributions:
+The tabs at the top-right of the window can be used to display one or more selected traces in various ways.
+For example, selecting the two R0 traces and choosing the `Marginal prob distribution` panel results in useful comparison between the sampled population size marginal posterior distributions (see [Figure 15](#fig:tracer-R0)).
 
 <figure>
-	<a id="fig:"></a>
-	<img style="width:100%;" src="figures/tracer-R0.png" alt="">
-	<figcaption>Figure 13: Estimated {% eqinline R_0 %} marginal posteriors.</figcaption>
+	<a id="fig:tracer-R0"></a>
+	<img style="width:100%;" src="figures/15-tracer-R0.png" alt="">
+	<figcaption>Figure 15: Estimated R<sub>0</sub> marginal posteriors.</figcaption>
 </figure>
 <br>
 
-Note that some of the ESS values are still less than 200 - the arbitrary
-threshold for acceptability. If this analysis were part of a serious study you
-would want to run the chain for another few million iterations to improve
-these. (In BEAST 2, analyses can be resumed - the samples you've already
-acquired will not be wasted.) For the purposes of this tutorial, however, these
-values are acceptable.
+<!--
+Note that some of the ESS values are still less than 200 – the arbitrary
+threshold for acceptability.
+If this analysis were part of a serious study you would want to run the chain for another few million iterations to improve these.
+In BEAST 2, analyses can be resumed – the samples you already have will not be wasted.)
+For the purpose of this tutorial, however, these values are acceptable.-->
 
 ## Tree log visualization
 
-The popular phylogenetic tree visualizer
-[FigTree](http://tree.bio.ed.ac.uk/software/figtree/) can be used to visualize
-the sampled trees.  Be warned, however, that FigTree currently
-takes an extremely long time to load even relatively small (a few megabyte)
-MultiTypeTree logs.
+The popular phylogenetic tree visualizer [FigTree](http://tree.bio.ed.ac.uk/software/figtree/) can be used to visualize the sampled trees.
+However, Figtree can be quite slow with MultiTypeTree log files, so for this tutorial we suggest using [IcyTree](https://icytree.org/) to view tree log files.
+IcyTree is a tree viewer that runs in a web browser, which runs best under recent versions of [Google Chrome](http://www.google.com/chrome) and [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/) (in that order).
 
-For this reasons we suggest using [IcyTree](http://tgvaughan.github.io/icytree)
-to view tree log files and maybe switching to FigTree to visualize summary
-trees as discussed in the next section.  (Also, IcyTree can be used to export
-individual trees from a large log file for subsequent viewing using FigTree.)
-IcyTree is a tree viewer that runs in a web browser.  It runs best under recent
-versions of [Google Chrome](http://www.google.com/chrome) and [Mozilla
-Firefox](https://www.mozilla.org/en-US/firefox/) (in that order).
+To view MultiTypeTree log files using IcyTree, simply navigate to the IcyTree web page, select `Load from file` from the `File` menu, then select the `h3n2-bdmm.h3n2_2deme.trees` tree log file using the file selection dialog.
+Alternatively, you can simply drag the log file into your browser window.
+Once the file is loaded you will see the first tree it contains.
+In order to select a different tree, hover the mouse pointer over the box in the lower-left corner of the window.
+This box will expand to a small dialog containing buttons allowing you to navigate between trees.
+The `<` and `>` buttons move in steps of 1 tree, while `<<` and `>>` move 10% of the tree file.
+You can also directly enter the index of a tree.
 
-To view MultiTypeTree log files using IcyTree, simply navigate to the IcyTree
-web page, select "Load from file" from the "File" menu, then select one of the
-tree log files using the file selection dialog. Once the file is loaded you
-will see the first tree it contains.  In order to select a different tree, move
-the mouse pointer over the box in the lower-left corner of the window.  This
-box will expand to a small dialog containing buttons allowing you to navigate
-between trees. The '<' and '>' buttons move in steps of 1 tree, while '<<' and
-'>>' move 10% of the tree file per click.  You can also directly enter the
-index of a tree.  (Note that there are keyboard shortcuts for almost all
-commands in IcyTree and that these can be found by selecting "Keyboard
-shortcuts" from the "Help" menu.)
-
-Initially the trees edges will be uncoloured.  To colour the edges according to
-the edge type, open the "Style" menu, navigate to the "Colour edges by" submenu
-and select "type". A legend and axis can be added by choosing "Display legend"
-and "Axis > Age" from the same menu.
-
-The following shows the final tree of `h3n2-bdmm-v2-samplingPrior.h3n2_2deme.map.trees` in IcyTree, which
-represents our sampled estimate of the MAP multi-type tree:
+Initially the tree edges will be uncoloured.
+To colour the edges according to the edge type (this is the strain location in our case), navigate to `Style > Colour edges by` and select `type`.
+A legend and axis can be added by choosing `Display legend` and `Axis > Age` from the same menu.
+You can browse the trees from your posterior sample (example of the trees you can see in [Figure 16](#fig:icyTree-trees)) to look at the traits they share, however in general we need some sort of a summary to be able to draw conclusions from our tree sample.
 
 <figure>
-	<a id="fig:"></a>
-	<img style="width:100%;" src="figures/icyTreeMAP.png" alt="">
-	<figcaption>Figure 14: The MAP multi-type tree in IcyTree.</figcaption>
+	<a id="fig:icyTree-trees"></a>
+	<img style="width:100%;" src="figures/16-icyTree-trees.png" alt="">
+	<figcaption>Figure 16: An example of a sampled multi-type tree in IcyTree.</figcaption>
 </figure>
 <br>
 
-While IcyTree is useful for rapidly visualizing the results of an analysis, it
-is not nearly as feature-rich as FigTree and not as capable for producing
-publication-quality graphics.  Happily, however, IcyTree can extract single
-trees from larger log files. Simply navigate to the desired tree, open the
-"File" menu, choose the "Export tree as" submenu and select "NEXUS file". (It
-is important to select "NEXUS" instead of "Newick" as the Newick format does
-not support the annotations that MultiTypeTree uses to mark the edge types.)
-
-## Producing a summary tree using TreeAnnotator
-
-While it is tempting to view the MAP tree shown above as the primary result of
-the phylogenetic side of our analysis it is very important to remember that
-this is only a point estimate and says nothing about the uncertainty present in
-the result.  This is an important drawback, as we have done a full Bayesian
-analysis and have access to a large number of samples from the full posterior
-in the tree log files. The MAP tree discards almost all of this information.
-
-We can make better use of our raw analysis results by using the TreeAnnotator
-program which is distributed with BEAST to analyze the
-`typedNode` trees which were produced by our MCMC run.  To do this,
-simply load TreeAnnotator and select the `typedNode` tree file as
-the input file and `h3n2-bdmm-v2-samplingPrior.h3n2_2deme.summary.trees` as the output file.  Select "Mean
-heights" from the "Node heights" menu and set the burn-in percentage to 10:
+One way of summarising is done by the special `MultiTypeTree` log, which logs the running estimates of the <i>maximum a posteriori</i> multi-type tree over the course of the analysis.
+In our case it is the `h3n2-bdmm.h3n2_2deme.map.trees` file.
+You can see the last tree from this file, which represents our sampled estimate of the MAP multi-type tree, in [Figure 17](#fig:icyTree-MAP).
 
 <figure>
-	<a id="fig:"></a>
-	<img style="width:50%;" src="figures/treeannotator.png" alt="">
-	<figcaption>Figure 15: Use TreeAnnotator to produce a summary tree.</figcaption>
+	<a id="fig:icyTree-MAP"></a>
+	<img style="width:100%;" src="figures/17-icyTree-MAP.png" alt="">
+	<figcaption>Figure 17: The final MAP multi-type tree in IcyTree.</figcaption>
 </figure>
 <br>
 
-Pressing the "Run" button will now produce an annotated summary tree.
+## Producing a summary tree using `TreeAnnotator`
 
-To visualize this tree, open IcyTree once more (maybe open it in a new browser
-tab), choose File->Open, then select the file
-`h3n2_2deme.h3n2_2deme.summary.tree` using the file selection dialog. Follow
-the instructions provided for the MAP tree above to colour the tree by the
-"type" attribute and add the legend and time axis. In addition, open the Style
-menu and from the "Node height error bars" sub-menu select "height_95%_HPD" to
-add error bars to the internal node heights. Also, open the Style menu and from
-the "Edge opacity" sub-menu select "type.prob". This will cause the edges to
-become increasingly transparent as the posterior probability for the displayed
-colour decreases.
+While it is tempting to view the MAP tree shown above as the primary result of the phylogenetic side of our analysis it is very important to remember that this is only a point estimate and says nothing about the uncertainty present in the result.
+This is an important drawback, as we have done a full Bayesian analysis and have access to a large number of samples from the full posterior in the tree log files.
+The MAP tree discards almost all of this information.
 
-Once these style preferences have been set, you should see something similar to
-the following:
+We can make better use of our raw analysis results by using the `TreeAnnotator` program which is distributed with BEAST2 to analyze the sample of trees which was produced by our MCMC run.
+To do this, simply start `TreeAnnotator` and select the `h3n2-bdmm.h3n2_2deme.typedNode.trees` tree file as the input file and `h3n2-bdmm.h3n2_2deme.summary.trees` as the output file.
+We will set the `Burnin percentage` to 10, the `Target tree type` to the `Maximum clade credibility tree` (default) and for the `Node heights` we would like to have `Mean heights`.
+The setup can be seen in [Figure 18](#fig:TreeAnnotator-setup).
 
 <figure>
-	<a id="fig:"></a>
-	<img src="figures/icyTreeSummary.png" alt="">
-	<figcaption>Figure 16: The summary tree in IcyTree.</figcaption>
+	<a id="fig:TreeAnnotator-setup"></a>
+	<img style="width:50%;" src="figures/18-TreeAnnotator-setup.png" alt="">
+	<figcaption>Figure 18: Use TreeAnnotator to produce a summary tree.</figcaption>
 </figure>
 <br>
 
-Here we have a full consensus tree annotated by the locations at coalescence
-nodes and showing node height uncertainty, with the widths of the edges
-representing how certain we can be of the location estimate at each point on
-the tree. This is a much more comprehensive summary of the phylogenetic side of
-our analysis.
+Pressing the `Run` button will produce an annotated summary tree.
 
-One thing to pay attention to here is that the most probable root location is
-given by the summary tree to be Hong Kong (under our model which assumes that
-only Hong Kong and New Zealand exist). By hovering the mouse cursor over the
-tiny edge above the root will bring up a table in which posterior probability
-of the displayed root location (`type.prob`) can be seen to be approximately
-90%. The analysis therefore strongly supports a Hong Kong origin over a New
-Zealand origin.  
+To visualize this tree, open IcyTree once more (maybe open it in a new browser tab), choose `File > Open`, then select the file `h3n2_2deme.h3n2_2deme.summary.tree` using the file selection dialog.
+Follow the instructions provided above to colour the tree by the `type` attribute and add the legend and time axis.
+In addition, open the `Style` menu and select `Node height error bars > height_95%_HPD` to add error bars to the internal node heights.
+Finally, open the `Style` menu and select `Edge opacity > type.prob`.
+This make cause the edges become increasingly transparent as the posterior probability for the displayed branch decreases.
+
+Once these style preferences have been set, you should see something similar to the tree shown in [Figure 19](#fig:icyTree-summary).
+
+<figure>
+	<a id="fig:icyTree-summary"></a>
+	<img src="figures/19-icyTree-summary.png" alt="">
+	<figcaption>Figure 19: The summary tree in IcyTree.</figcaption>
+</figure>
+<br>
+
+Here we have a full consensus tree annotated by the locations at coalescence nodes and showing node height uncertainty, with the width/transparency of the edges representing how certain we can be of the location estimate at each point on the tree.
+This is a much more comprehensive summary of the phylogenetic side of our analysis.
+
+One thing to pay attention to here is that the most probable root location in the summary tree is Hong Kong (under our model which assumes that only Hong Kong and New Zealand exist).
+By hovering the mouse cursor over the tiny edge above the root will bring up a table in which posterior probability of the displayed root location (`type.prob`) can be seen to be approximately 90%.
+The analysis therefore strongly supports a Hong Kong origin over a New Zealand origin.
 
 <!--[Very useful final notes from Tim](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner%27s-Tutorial-%28short-version%29#final-notes)-->
 
