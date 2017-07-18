@@ -200,7 +200,7 @@ In general, 4-6 categories work well for most datasets, while having more catego
 We would also like to estimate the `Shape` parameter, which describes the chape of the continuous gamma distribution we approximate.
 To do so, we need to set it to a non-zero value (e.g. the default 1.0) and tick the `estimate` chackbox.
 While the gamma categories account for rate variation, allowing some sites to have an evolutionary rate of 0 can imporove fit to real data.
-Thus we we need to set the `Proportion Invariant` parameter to a non-zero value (e.g. 0.5) and tick the `estimate` chackbox.
+To speed up the analysis we will fix this to the actual proportion of invariant sites we have in our alignment, which is 0.867.
 
 Next, to set up the substitution model, select `HKY` from the drop-down menu (the default option is `JC69`).
 We would like to estimate the kappa parameter of HKY, so we leave the `Kappa` at the default value of 2.0 and leave the `estimate` checkbox checked.
@@ -305,8 +305,15 @@ The first important parameter is R<sub>0</sub>.
 In epidemiology, the basic reproduction number, R<sub>0</sub>, of an infection is the number of secondary cases one case generates on average over the course of its infectious period, in an otherwise uninfected population.
 Even though we do not have any information on R<sub>0</sub> in the particular outbreak, infections rarely have R<sub>0</sub> > 10, so we can set an upper limit on the sampled values.
 To do so, in the line denoted `R0.t:h3n2_2deme` click the button captioned `initial = [2.0, 2.0] [0.0, Infinity]` to get a pop up settings window (see [Figure 12](#fig:R0-prior)), where you can set the upper value.
-Other than that, the current prior sets ther median value of the ditribution to e<sup>0</sup> = 1, which will fit the endemic case of influenza.
+Other than that, the current prior sets ther median value of the distribution to e<sup>0</sup> = 1, which will fit the endemic case of influenza.
 <!--Should we also have multiple dimensions for R0 here?-->
+
+<figure>
+	<a id="fig:R0-prior"></a>
+	<img style="width:100%;" src="figures/12-R0-prior.png" alt="">
+	<figcaption>Figure 12: Set the prior for the R<sub>0</sub>.</figcaption>
+</figure>
+<br>
 
 Next, we should adjust the prior for the rate of clearing the infection, which is labelled as `becomeUninfectiousRate.t:h3n2_2deme`.
 The value of the rate, say x, is the reciprocal of the average time a person with influenza is infectious, 1/x.
@@ -317,25 +324,17 @@ Bear in mind that our time units are years, so we can not just set the rate to 1
 This prior will ensure that we mainly sample realistic parameter values, but still gives BEAST2 quite a lot of freedom to go to extreme values if need be, as the 95% highest density interval for the prior is [4.44, 244], or [1.49, 82.21] infectious days.
 You can see the setup in [Figure 13](#fig:bUR-prior).
 
-Finally, we will also set the prior for the clock rate to a distribution that is in accordance with what we know about RNA viruses, which is that in general their mean substitution rate is around ≈ 10<sup>-3</sup>.
-We shall set the distribution for `clockRate.c:h3n2_2deme` to `Log Normal` with the mean of 0.001, with the `Mean in Real Space` checkbox checked.
-We will leave the `S` parameter (standard deviation) at the default value of 1.25 to allow BEAST2 a lot of freedom in case it is necessary.
-
-For the purpose of this tutorial and given that we know little about the outbreak in question, we will leave the other priors on the default values, but feel free to through the other priors yourself and verify their sensibility.
-
-<figure>
-	<a id="fig:R0-prior"></a>
-	<img style="width:100%;" src="figures/12-R0-prior.png" alt="">
-	<figcaption>Figure 12: Set the prior for the R0.</figcaption>
-</figure>
-<br>
-
 <figure>
 	<a id="fig:bUR-prior"></a>
 	<img style="width:100%;" src="figures/13-bUR-prior.png" alt="">
 	<figcaption>Figure 13: Set the prior for the rate of recovery.</figcaption>
 </figure>
 <br>
+
+We will also set the prior for the clock rate to a distribution that is in accordance with what we know about RNA viruses, which is that in general their mean substitution rate is around ≈ 10<sup>-3</sup>.
+We shall set the distribution for `clockRate.c:h3n2_2deme` to `Log Normal` with the mean of 0.001, with the `Mean in Real Space` checkbox checked.
+We will leave the `S` parameter (standard deviation) at the default value of 1.25 to allow BEAST2 a lot of freedom in case it is necessary.
+The appropriate prior setup can be seen in [Figure 14](#fig:clock-rate-prior).
 
 <figure>
 	<a id="fig:clock-rate-prior"></a>
@@ -344,12 +343,26 @@ For the purpose of this tutorial and given that we know little about the outbrea
 </figure>
 <br>
 
-We will use the default set-up for the MCMC and save our file as usual.
+Lastly, we will set the sampling proportion prior to a more narrow distribution peaked around the very low values, as influenza spreads easily, but only few people actually get sampled.
+Taking into account that we are also using a thinned-down version of the dataset, we can use a diffuse prior with the mean around 10<sup>-3</sup>.
+The default prior for the sampling proportion is a `Beta` distribution, which is only defined between 0 and 1, making it a natural choice for proportions.
+Here, however, we will use a `Log Normal` prior, with the mean `M` at 10<sup>-3</sup> and the standard deviation `S` at 1.25 to allow a lot of variance.
+Once again we need to check that the `Mean in Real Space` checkbox is checked, and since the `Log Normal` distribution is defined outside the range of [0, 1] we also need to check that the `Lower` and `Upper` limits are set accordingly.
+You can see the sampling prior setup in [Figure 15](#fig:samplingProportion-prior)
+
+<figure>
+	<a id="fig:samplingProportion-prior"></a>
+	<img style="width:100%;" src="figures/15-samplingProportion-prior.png" alt="">
+	<figcaption>Figure 15: Set the prior for sampling proportion.</figcaption>
+</figure>
+<br>
+
+For the purpose of this tutorial and given that we know little about the outbreak in question to set strict priors on the `rateMatrix`, we will leave the other priors on the default values, but feel free to through them yourself and verify their sensibility.
 
 ## Saving the configuration
 
 Once you are done wuth setting all the appropriate parameters, you can save the configuration file.
-For now we will leave the `MCMC` panel parameters as they are by default.
+We will leave the `MCMC` panel parameters as they are by default.
 
 # Running the analysis using BEAST
 
@@ -388,12 +401,12 @@ Important traces are:
 * `Tree.t:h3n2_2deme.count_HongKong_to_NewZealand`: these give the actual number of ancestral migrations from Hong Kong to New Zealand.
 
 The tabs at the top-right of the window can be used to display one or more selected traces in various ways.
-For example, selecting the two R0 traces and choosing the `Marginal prob distribution` panel results in useful comparison between the sampled population size marginal posterior distributions (see [Figure 15](#fig:tracer-R0)).
+For example, selecting the two R0 traces and choosing the `Marginal prob distribution` panel results in useful comparison between the sampled population size marginal posterior distributions (see [Figure 16](#fig:tracer-R0)).
 
 <figure>
 	<a id="fig:tracer-R0"></a>
-	<img style="width:100%;" src="figures/15-tracer-R0.png" alt="">
-	<figcaption>Figure 15: Estimated R<sub>0</sub> marginal posteriors.</figcaption>
+	<img style="width:100%;" src="figures/16-tracer-R0.png" alt="">
+	<figcaption>Figure 16: Estimated R<sub>0</sub> marginal posteriors.</figcaption>
 </figure>
 <br>
 
@@ -421,23 +434,23 @@ You can also directly enter the index of a tree.
 Initially the tree edges will be uncoloured.
 To colour the edges according to the edge type (this is the strain location in our case), navigate to `Style > Colour edges by` and select `type`.
 A legend and axis can be added by choosing `Display legend` and `Axis > Age` from the same menu.
-You can browse the trees from your posterior sample (example of the trees you can see in [Figure 16](#fig:icyTree-trees)) to look at the traits they share, however in general we need some sort of a summary to be able to draw conclusions from our tree sample.
+You can browse the trees from your posterior sample (example of the trees you can see in [Figure 17](#fig:icyTree-trees)) to look at the traits they share, however in general we need some sort of a summary to be able to draw conclusions from our tree sample.
 
 <figure>
 	<a id="fig:icyTree-trees"></a>
-	<img style="width:100%;" src="figures/16-icyTree-trees.png" alt="">
-	<figcaption>Figure 16: An example of a sampled multi-type tree in IcyTree.</figcaption>
+	<img style="width:100%;" src="figures/17-icyTree-trees.png" alt="">
+	<figcaption>Figure 17: An example of a sampled multi-type tree in IcyTree.</figcaption>
 </figure>
 <br>
 
 One way of summarising is done by the special `MultiTypeTree` log, which logs the running estimates of the <i>maximum a posteriori</i> multi-type tree over the course of the analysis.
 In our case it is the `h3n2-bdmm.h3n2_2deme.map.trees` file.
-You can see the last tree from this file, which represents our sampled estimate of the MAP multi-type tree, in [Figure 17](#fig:icyTree-MAP).
+You can see the last tree from this file, which represents our sampled estimate of the MAP multi-type tree, in [Figure 18](#fig:icyTree-MAP).
 
 <figure>
 	<a id="fig:icyTree-MAP"></a>
-	<img style="width:100%;" src="figures/17-icyTree-MAP.png" alt="">
-	<figcaption>Figure 17: The final MAP multi-type tree in IcyTree.</figcaption>
+	<img style="width:100%;" src="figures/18-icyTree-MAP.png" alt="">
+	<figcaption>Figure 18: The final MAP multi-type tree in IcyTree.</figcaption>
 </figure>
 <br>
 
@@ -450,12 +463,12 @@ The MAP tree discards almost all of this information.
 We can make better use of our raw analysis results by using the `TreeAnnotator` program which is distributed with BEAST2 to analyze the sample of trees which was produced by our MCMC run.
 To do this, simply start `TreeAnnotator` and select the `h3n2-bdmm.h3n2_2deme.typedNode.trees` tree file as the input file and `h3n2-bdmm.h3n2_2deme.summary.trees` as the output file.
 We will set the `Burnin percentage` to 10, the `Target tree type` to the `Maximum clade credibility tree` (default) and for the `Node heights` we would like to have `Mean heights`.
-The setup can be seen in [Figure 18](#fig:TreeAnnotator-setup).
+The setup can be seen in [Figure 19](#fig:TreeAnnotator-setup).
 
 <figure>
 	<a id="fig:TreeAnnotator-setup"></a>
-	<img style="width:50%;" src="figures/18-TreeAnnotator-setup.png" alt="">
-	<figcaption>Figure 18: Use TreeAnnotator to produce a summary tree.</figcaption>
+	<img style="width:50%;" src="figures/19-TreeAnnotator-setup.png" alt="">
+	<figcaption>Figure 19: Use TreeAnnotator to produce a summary tree.</figcaption>
 </figure>
 <br>
 
@@ -467,12 +480,12 @@ In addition, open the `Style` menu and select `Node height error bars > height_9
 Finally, open the `Style` menu and select `Edge opacity > type.prob`.
 This make cause the edges become increasingly transparent as the posterior probability for the displayed branch decreases.
 
-Once these style preferences have been set, you should see something similar to the tree shown in [Figure 19](#fig:icyTree-summary).
+Once these style preferences have been set, you should see something similar to the tree shown in [Figure 20](#fig:icyTree-summary).
 
 <figure>
 	<a id="fig:icyTree-summary"></a>
-	<img src="figures/19-icyTree-summary.png" alt="">
-	<figcaption>Figure 19: The summary tree in IcyTree.</figcaption>
+	<img src="figures/20-icyTree-summary.png" alt="">
+	<figcaption>Figure 20: The summary tree in IcyTree.</figcaption>
 </figure>
 <br>
 
