@@ -165,7 +165,6 @@ CY002938_NewZealand_2004.68767123=2004.68767123</trait>
         <parameter id="samplingProportion.t:h3n2_2deme" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.0 0.01 0.0 0.01</parameter>
         <parameter id="rateMatrix.t:h3n2_2deme" dimension="2" lower="0.0" name="stateNode" upper="100.0">0.1 0.1</parameter>
         <parameter id="geo-frequencies.t:h3n2_2deme" dimension="2" lower="0.0" name="stateNode" upper="1.0">0.5 0.5</parameter>
-        <parameter id="proportionInvariant.s:h3n2_2deme" lower="0.0" name="stateNode" upper="1.0">0.5</parameter>
         <parameter id="gammaShape.s:h3n2_2deme" name="stateNode">1.0</parameter>
         <parameter id="kappa.s:h3n2_2deme" lower="0.0" name="stateNode">2.0</parameter>
         <parameter id="clockRate.c:h3n2_2deme" name="stateNode">0.005</parameter>
@@ -185,10 +184,16 @@ CY002938_NewZealand_2004.68767123=2004.68767123</trait>
                 </LogNormal>
             </prior>
             <prior id="becomeUninfectiousRatePrior.t:h3n2_2deme" name="distribution" x="@becomeUninfectiousRate.t:h3n2_2deme">
-                <Uniform id="Uniform.2" name="distr" upper="365.0"/>
+                <LogNormal id="LogNormalDistributionModel.0" meanInRealSpace="true" name="distr">
+                    <parameter id="RealParameter.3" estimate="false" name="M">52.0</parameter>
+                    <parameter id="RealParameter.4" estimate="false" name="S">1.0</parameter>
+                </LogNormal>
             </prior>
             <prior id="ClockPrior.c:h3n2_2deme" name="distribution" x="@clockRate.c:h3n2_2deme">
-                <Uniform id="Uniform.0" name="distr" upper="Infinity"/>
+                <LogNormal id="LogNormalDistributionModel.3" meanInRealSpace="true" name="distr">
+                    <parameter id="RealParameter.12" estimate="false" name="M">0.001</parameter>
+                    <parameter id="RealParameter.13" estimate="false" lower="0.0" name="S" upper="5.0">1.25</parameter>
+                </LogNormal>
             </prior>
             <prior id="GammaShapePrior.s:h3n2_2deme" name="distribution" x="@gammaShape.s:h3n2_2deme">
                 <Exponential id="Exponential.0" name="distr">
@@ -201,9 +206,6 @@ CY002938_NewZealand_2004.68767123=2004.68767123</trait>
                     <parameter id="RealParameter.11" estimate="false" name="S">1.25</parameter>
                 </LogNormal>
             </prior>
-            <prior id="PropInvariantPrior.s:h3n2_2deme" name="distribution" x="@proportionInvariant.s:h3n2_2deme">
-                <Uniform id="Uniform.1" name="distr"/>
-            </prior>
             <prior id="rateMatrixPrior.t:h3n2_2deme" name="distribution" x="@rateMatrix.t:h3n2_2deme">
                 <Exponential id="Exponential.1" name="distr">
                     <parameter id="RealParameter.9" estimate="false" name="mean">1.0</parameter>
@@ -211,16 +213,17 @@ CY002938_NewZealand_2004.68767123=2004.68767123</trait>
             </prior>
             <distribution id="samplingProportionPrior.t:h3n2_2deme" spec="multitypetree.distributions.ExcludablePrior" x="@samplingProportion.t:h3n2_2deme">
                 <xInclude id="BooleanParameter.1" spec="parameter.BooleanParameter" dimension="4">false true false true</xInclude>
-                <Beta id="Beta.0" name="distr">
-                    <parameter id="RealParameter.7" estimate="false" name="alpha">1.0</parameter>
-                    <parameter id="RealParameter.8" estimate="false" name="beta">1.0</parameter>
-                </Beta>
+                <LogNormal id="LogNormalDistributionModel.4" meanInRealSpace="true" name="distr">
+                    <parameter id="RealParameter.14" estimate="false" name="M">0.001</parameter>
+                    <parameter id="RealParameter.15" estimate="false" lower="0.0" name="S" upper="5.0">1.25</parameter>
+                </LogNormal>
             </distribution>
         </distribution>
         <distribution id="likelihood" spec="util.CompoundDistribution">
             <distribution id="treeLikelihood.h3n2_2deme" spec="TreeLikelihood" data="@h3n2_2deme" tree="@Tree.t:h3n2_2deme">
-                <siteModel id="SiteModel.s:h3n2_2deme" spec="SiteModel" gammaCategoryCount="4" proportionInvariant="@proportionInvariant.s:h3n2_2deme" shape="@gammaShape.s:h3n2_2deme">
+                <siteModel id="SiteModel.s:h3n2_2deme" spec="SiteModel" gammaCategoryCount="4" shape="@gammaShape.s:h3n2_2deme">
                     <parameter id="mutationRate.s:h3n2_2deme" estimate="false" name="mutationRate">1.0</parameter>
+                    <parameter id="proportionInvariant.s:h3n2_2deme" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.867</parameter>
                     <substModel id="hky.s:h3n2_2deme" spec="HKY" kappa="@kappa.s:h3n2_2deme">
                         <frequencies id="estimatedFreqs.s:h3n2_2deme" spec="Frequencies" frequencies="@freqParameter.s:h3n2_2deme"/>
                     </substModel>
@@ -276,8 +279,6 @@ CY002938_NewZealand_2004.68767123=2004.68767123</trait>
         <down idref="becomeUninfectiousRate.t:h3n2_2deme"/>
     </operator>
 
-    <operator id="proportionInvariantScaler.s:h3n2_2deme" spec="ScaleOperator" parameter="@proportionInvariant.s:h3n2_2deme" scaleFactor="0.5" weight="0.1"/>
-
     <operator id="gammaShapeScaler.s:h3n2_2deme" spec="ScaleOperator" parameter="@gammaShape.s:h3n2_2deme" scaleFactor="0.5" weight="0.1"/>
 
     <operator id="KappaScaler.s:h3n2_2deme" spec="ScaleOperator" parameter="@kappa.s:h3n2_2deme" scaleFactor="0.5" weight="0.1"/>
@@ -304,7 +305,6 @@ CY002938_NewZealand_2004.68767123=2004.68767123</trait>
         <log idref="rateMatrix.t:h3n2_2deme"/>
         <log idref="geo-frequencies.t:h3n2_2deme"/>
         <log idref="clockRate.c:h3n2_2deme"/>
-        <log idref="proportionInvariant.s:h3n2_2deme"/>
         <log idref="gammaShape.s:h3n2_2deme"/>
         <log idref="kappa.s:h3n2_2deme"/>
         <log idref="freqParameter.s:h3n2_2deme"/>
