@@ -50,8 +50,8 @@ Also note that `bdmm` depends on the `MultiTypeTree` package. BEAUTi will instal
 
 <figure>
 	<a id="fig:install-bdmm"></a>
-	<img style="width:75%;margin:auto;display:block;" src="figures/1-install-bdmm.png" alt="">
-	<figcaption style="width:75%;margin:auto;display:block;">Figure 1: Install bdmm.</figcaption>
+	<img style="width:75%;" src="figures/1-install-bdmm.png" alt="">
+	<figcaption>Figure 1: Install bdmm.</figcaption>
 </figure>
 <br>
 
@@ -143,8 +143,8 @@ The date parsing setup will look as shown in [Figure 5](#fig:tip-dates).
 
 <figure>
 	<a id="fig:tip-dates"></a>
-	<img style="width:100%;" style="width:75%;margin:auto;display:block;" src="figures/5-tip-dates.png" alt="">
-	<figcaption style="width:75%;margin:auto;display:block;">Figure 5: Guessing the tip dates.</figcaption>
+	<img style="width:75%;" src="figures/5-tip-dates.png" alt="">
+	<figcaption>Figure 5: Guessing the tip dates.</figcaption>
 </figure>
 <br>
 
@@ -175,8 +175,8 @@ The location parsing setup will look as shown in [Figure 7](#fig:tip-types).
 
 <figure>
 	<a id="fig:tip-types"></a>
-	<img style="width:75%;margin:auto;display:block;" src="figures/7-tip-types.png" alt="">
-	<figcaption style="width:75%;margin:auto;display:block;">Figure 7: Guessing the locations.</figcaption>
+	<img style="width:75%;" src="figures/7-tip-types.png" alt="">
+	<figcaption>Figure 7: Guessing the locations.</figcaption>
 </figure>
 <br>
 
@@ -319,7 +319,7 @@ Next, we should adjust the prior for the rate of clearing the infection, which i
 The value of the rate, say x, is the reciprocal of the average time a person with influenza is infectious, 1/x.
 From what we know about influenza we can say that an average infection lasts for about a week, however we would not want to impose too strong of a prior on this parameter.
 Let us change the distribution for this parameter to a `LogNormal` and tick the `Mean in Real Space` checkbox to make the setting easier.
-So, for a mean time of recovery of 7 days we need to set the mean of our distribution to 365/7 ≈ 52.14 (or to 52 for simplicity).
+So, for a mean time of recovery of 7 days we need to set the mean of our distribution to 365/7 {% eqinline \approx %} 52.14 (or to 52 for simplicity).
 Bear in mind that our time units are years, so we can not just set the rate to 1/7.
 This prior will ensure that we mainly sample realistic parameter values, but still gives BEAST2 quite a lot of freedom to go to extreme values if need be, as the 95% highest density interval for the prior is [4.44, 224], or [1.63, 82.21] infectious days.
 You can see the setup in [Figure 13](#fig:bUR-prior).
@@ -331,7 +331,7 @@ You can see the setup in [Figure 13](#fig:bUR-prior).
 </figure>
 <br>
 
-We will also set the prior for the clock rate to a distribution that is in accordance with what we know about RNA viruses, which is that in general their mean substitution rate is around ≈ 10<sup>-3</sup>.
+We will also set the prior for the clock rate to a distribution that is in accordance with what we know about RNA viruses, which is that in general their mean substitution rate is around {% eqinline \approx %} 10^(-3).
 We shall set the distribution for `clockRate.c:h3n2_2deme` to `Log Normal` with the mean of 0.001, with the `Mean in Real Space` checkbox checked.
 We will leave the `S` parameter (standard deviation) at the default value of 1.25 to allow BEAST2 a lot of freedom in case it is necessary.
 The appropriate prior setup can be seen in [Figure 14](#fig:clock-rate-prior).
@@ -477,8 +477,8 @@ The setup can be seen in [Figure 20](#fig:TreeAnnotator-setup).
 
 <figure>
 	<a id="fig:TreeAnnotator-setup"></a>
-	<img style="width:75%;margin:auto;display:block;" src="figures/20-TreeAnnotator-setup.png" alt="">
-	<figcaption style="width:75%;margin:auto;display:block;">Figure 20: Use TreeAnnotator to produce a summary tree.</figcaption>
+	<img style="width:75%;" src="figures/20-TreeAnnotator-setup.png" alt="">
+	<figcaption>Figure 20: Use TreeAnnotator to produce a summary tree.</figcaption>
 </figure>
 <br>
 
@@ -494,7 +494,7 @@ Once these style preferences have been set, you should see something similar to 
 
 <figure>
 	<a id="fig:icyTree-summary"></a>
-	<img style="width:100%" src="figures/21-icyTree-summary.png" alt="">
+	<img style="width:100%;" src="figures/21-icyTree-summary.png" alt="">
 	<figcaption>Figure 21: The summary tree in IcyTree.</figcaption>
 </figure>
 <br>
