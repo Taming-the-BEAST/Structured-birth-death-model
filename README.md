@@ -11,7 +11,7 @@ subtitle: Population structure using the multi-type birth-death model
 In this tutorial we will use the [BEAST2](http://www.beast2.org/)
 [bdmm](https://github.com/denisekuehnert/bdmm) package to perform a Bayesian
 phylogenetic analysis of an influenza data set using the multi-type birth-death
-model.
+model {% cite Kuhnert2016 --file Structured-birth-death-model/refs.bib %}.
 
 <!--(Note that both the structured coalescent and the multi-type birth-death model are tree priors implemented in BEAST2. Both of them utilize the multi-type tree structure of the MultiTypeTree package. While the structured coalescent is part of the MultiTypeTree package, the multi-type birth-death model has its own package bdmm (aka birth-death migration model).)-->
 
@@ -197,9 +197,9 @@ To configure this in BEAUti, switch to the `Site Model` panel.
 First, we need to set up the rate category count.
 To approximate the continuous gamma rate distribution BEAST2 uses the discrete gamma distribution, where sites are divided into k equally probable rate categories.
 In general, 4-6 categories work well for most datasets, while having more categories involve a lot of computation at little precision gain, so we set the `Gamma category count` to 4.
-We would also like to estimate the `Shape` parameter, which describes the chape of the continuous gamma distribution we approximate.
-To do so, we need to set it to a non-zero value (e.g. the default 1.0) and tick the `estimate` chackbox.
-While the gamma categories account for rate variation, allowing some sites to have an evolutionary rate of 0 can imporove fit to real data.
+We would also like to estimate the `Shape` parameter, which describes the shape of the continuous gamma distribution we approximate.
+To do so, we need to set it to a non-zero value (e.g. the default 1.0) and tick the `estimate` checkbox.
+While the gamma categories account for rate variation, allowing some sites to have an evolutionary rate of 0 can improve fit to real data.
 To speed up the analysis we will fix this to the actual proportion of invariant sites we have in our alignment, which is 0.867.
 
 Next, to set up the substitution model, select `HKY` from the drop-down menu (the default option is `JC69`).
@@ -298,7 +298,7 @@ As one can imagine, the matrix should have the dimensions of N * N, however sinc
 By default, BEAST2 provides you with a prior distribution for each of the parameters of your model.
 This is done because otherwise BEAUTi will have a hard time displating all of the parameters without any settings provided.
 Unfortunately, this means that some priors are very generic, and, moreover, some priors are in fact, improper – the distribution does not integrate to one.
-This means that while the default setup might work and the runs will eventually mix, it can happen that the values are 
+This means that while the default setup might work and the runs will eventually mix, it can happen that the values are meaningless.
 
 So, let us go through the important parameters and set priors according to the information we have about our dataset.
 The first important parameter is R<sub>0</sub>.
@@ -321,7 +321,7 @@ From what we know about influenza we can say that an average infection lasts for
 Let us change the distribution for this parameter to a `LogNormal` and tick the `Mean in Real Space` checkbox to make the setting easier.
 So, for a mean time of recovery of 7 days we need to set the mean of our distribution to 365/7 ≈ 52.14 (or to 52 for simplicity).
 Bear in mind that our time units are years, so we can not just set the rate to 1/7.
-This prior will ensure that we mainly sample realistic parameter values, but still gives BEAST2 quite a lot of freedom to go to extreme values if need be, as the 95% highest density interval for the prior is [4.44, 244], or [1.49, 82.21] infectious days.
+This prior will ensure that we mainly sample realistic parameter values, but still gives BEAST2 quite a lot of freedom to go to extreme values if need be, as the 95% highest density interval for the prior is [4.44, 224], or [1.63, 82.21] infectious days.
 You can see the setup in [Figure 13](#fig:bUR-prior).
 
 <figure>
@@ -361,7 +361,7 @@ For the purpose of this tutorial and given that we know little about the outbrea
 
 ## Saving the configuration
 
-Once you are done wuth setting all the appropriate parameters, you can save the configuration file.
+Once you are done with setting all the appropriate parameters, you can save the configuration file.
 We will leave the `MCMC` panel parameters as they are by default.
 
 # Running the analysis using BEAST
@@ -494,7 +494,7 @@ Once these style preferences have been set, you should see something similar to 
 
 <figure>
 	<a id="fig:icyTree-summary"></a>
-	<img src="figures/21-icyTree-summary.png" alt="">
+	<img style="width:100%" src="figures/21-icyTree-summary.png" alt="">
 	<figcaption>Figure 21: The summary tree in IcyTree.</figcaption>
 </figure>
 <br>
@@ -508,7 +508,6 @@ The analysis therefore strongly supports a Hong Kong origin over a New Zealand o
 
 <!--[Very useful final notes from Tim](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner%27s-Tutorial-%28short-version%29#final-notes)-->
 
-
 ----
 
 # Useful Links
@@ -517,12 +516,14 @@ The analysis therefore strongly supports a Hong Kong origin over a New Zealand o
 - [Multi-type birth-death process package](https://github.com/denisekuehnert/bdmm) {% cite Kuhnert2016 --file Structured-birth-death-model/refs.bib %}
 - BEAST 2 website and documentation: [http://www.beast2.org/](http://www.beast2.org/)
 
-----
-
-The content of this tutorial is based on the [Structured Coalescent tutorial](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version)) by Tim Vaughan.
-
 -----
 
 # Relevant References
 
 {% bibliography --cited --file Structured-birth-death-model/refs %}
+
+----
+
+#Acknowledgment
+
+The content of this tutorial is based on the [Structured Coalescent tutorial](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version)) by Tim Vaughan.
