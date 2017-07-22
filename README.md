@@ -3,6 +3,8 @@ author: Denise Kühnert, Jūlija Pečerska
 level: Professional
 title: Structured birth-death model
 subtitle: Population structure using the multi-type birth-death model
+beastversion: 2.4.7
+tracerversion: 1.6.0
 ---
 
 
@@ -23,13 +25,32 @@ assembled from publicly-available data sets provided by various authors on
 
 ## Software Requirements
 
-### BEAST2 - Bayesian Evolutionary Analysis Sampling Trees 2
+### BEAST2 - Bayesian Evolutionary Analysis Sampling Trees
 
-This tutorial uses the [BEAST2](http://www.beast2.org/) version 2.4.7. The software package also includes BEAUTi, the graphical BEAST2 interface which we will use to set up the analysis.
+BEAST2 is a free software package for Bayesian evolutionary analysis of molecular sequences using MCMC and strictly oriented toward inference using rooted, time-measured phylogenetic trees. This tutorial is written for BEAST v{{ page.beastversion }} {% cite Bouckaert2014 --file Prior-selection/master-refs %}.
 
-### Tracer
 
-To summarise the inference results you will also need a recent version of [Tracer](http://tree.bio.ed.ac.uk/software/tracer/).
+### BEAUti2 - Bayesian Evolutionary Analysis Utility
+
+BEAUti2 is a graphical user interface tool for generating BEAST2 XML configuration files.
+
+Both BEAST2 and BEAUti2 are Java programs, which means that the exact same code runs on all platforms. For us it simply means that the interface will be the same on all platforms. The screenshots used in this tutorial are taken on a Mac OS X computer; however, both programs will have the same layout and functionality on both Windows and Linux. BEAUti2 is provided as a part of the BEAST2 package so you do not need to install it separately.
+
+
+### TreeAnnotator
+
+TreeAnnotator is used to summarise the posterior sample of trees to produce a maximum clade credibility tree. It can also be used to summarise and visualise the posterior estimates of other tree parameters (e.g. node height).
+
+TreeAnnotator is provided as a part of the BEAST2 package so you do not need to install it separately.
+
+
+### Tracer 
+
+Tracer ([http://tree.bio.ed.ac.uk/software/tracer](http://tree.bio.ed.ac.uk/software/tracer)) is used to summarize the posterior estimates of the various parameters sampled by the Markov Chain. This program can be used for visual inspection and to assess convergence. It helps to quickly view median estimates and 95% highest posterior density intervals of the parameters, and calculates the effective sample sizes (ESS) of parameters. It can also be used to investigate potential parameter correlations. We will be using Tracer v{{ page.tracerversion }}.
+
+### IcyTree
+
+IcyTree ([https://icytree.org](https://icytree.org)) is a browser-based phylogenetic tree viewer. It is intended for rapid visualisation of phylogenetic tree files. It can also render phylogenetic networks provided in extended Newick format. IcyTree is compatible with current versions of Mozilla Firefox and Google Chrome.
 
 <!-- and an up-to-date version of 
 [Google Chrome](http://www.google.com/chrome) or
@@ -510,6 +531,10 @@ The analysis therefore strongly supports a Hong Kong origin over a New Zealand o
 
 ----
 
+#Acknowledgment
+
+The content of this tutorial is based on the [Structured Coalescent tutorial](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version)) by Tim Vaughan.
+
 # Useful Links
 
 - [Bayesian Evolutionary Analysis with BEAST 2](http://www.beast2.org/book.html) {% cite BEAST2book2014 --file Structured-birth-death-model/refs.bib %}
@@ -522,8 +547,3 @@ The analysis therefore strongly supports a Hong Kong origin over a New Zealand o
 
 {% bibliography --cited --file Structured-birth-death-model/refs %}
 
-----
-
-#Acknowledgment
-
-The content of this tutorial is based on the [Structured Coalescent tutorial](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version)) by Tim Vaughan.
