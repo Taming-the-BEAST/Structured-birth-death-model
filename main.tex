@@ -350,7 +350,7 @@ Next, to set up the substitution model, select \lstinline!HKY! from the
 drop-down menu (the default option is \lstinline!JC69!). We would like
 to estimate the kappa parameter of HKY, so we leave the
 \lstinline!Kappa! at the default value of 2.0 and leave the
-\lstinline!estimate! checkbox checked. As we would also like to estimate
+\lstinline!estimate! checkbox checked. We would also like to estimate
 nucleotide frequencies, so we leave the \lstinline!Frequencies!
 parameter at the default value (\lstinline!Estimated!). The BEAUti panel
 should now look as shown in Figure \ref{fig:site-model}.
@@ -367,17 +367,15 @@ not be estimated - we use the \lstinline!Clock rate! defined in the
 \lstinline!Clock Model! panel to determine the average per unit time
 rate of sequence evolution. This way, the \lstinline!Substitution rate!
 is not actually a rate, but rather a rate multiplier that we fix to 1
-for better parameter identifiability.
+to allow parameter identifiability.
 
 \subsection{Setting the clock model}\label{setting-the-clock-model}
 
 To speed up the analysis we will assume a strict clock for this small
-dataset. Since our data comes from a single epidemic it is not a
-far-fetched assumption, however to make sure this assumption holds model
-comparison is necessary. We will not do this here, but selection of
+dataset. However, the selection of a
 clock model for a different, real analysis should not be taken lightly.
 Since our alignment contains sequences sampled at different times and
-those times are measured in years, we must use a real clock rate
+those times are measured in years, we must use a clock rate
 expressed in units of expected substitutions per site per year. Usually
 the precise value is unknown and so the default behaviour of BEAUti is
 to assume this rate has to be estimated. To speed up mixing we set the
@@ -413,7 +411,7 @@ move between demes, but can not transfer between demes otherwise), or
 location in the body (for example, for localised infections caused by
 the same agent). In this dataset we have strains from 2 different
 locations, New Zealand and Hong Kong, so the \lstinline!Number of demes!
-should be set to 2, which luckily also is the default value. Next,
+should be set to 2, which also is the default value. Next,
 \lstinline!bdmm! lets you estimate the
 \lstinline!Reproduction number per type! and the
 \lstinline!BecomeUninfectiousRate per type!. This will let us see the
@@ -431,7 +429,8 @@ trouble, as \lstinline!bdmm! will try to produce a tree that has the
 same sampling proportion for the whole time, but no samples in the past
 and a lot of samples towards the present. In order to remove that bias
 from the trees, we need to make sure that we only have non-zero sampling
-starting from the first sample date. To do so, let's look at the
+starting from the first sample date (unless we know that there really weren't 
+any related cases before the first sampled case). To do so, let's look at the
 \lstinline!SamplingProportion per type! field. You will see that it has
 4 values, which correspond to two values per type, lets call them
 {[}v1,v2,v3,v4{]}. v1 and v2 are the values for the first and second
@@ -485,7 +484,7 @@ dimensionality, getting N * (N - 1).
 
 By default, BEAST2 provides you with a prior distribution for each of
 the parameters of your model. This is done because otherwise BEAUTi will
-have a hard time displating all of the parameters without any settings
+have a hard time displaying all of the parameters without any settings
 provided. Unfortunately, this means that some priors are very generic,
 and, moreover, some priors are in fact, improper -- the distribution
 does not integrate to one. This means that while the default setup might
@@ -821,7 +820,7 @@ the tiny edge above the root will bring up a table in which posterior
 probability of the displayed root location (\lstinline!type.prob!) can
 be seen. In this analysis we see that it is about 88.8\%. The analysis
 therefore strongly supports a Hong Kong origin over a New Zealand origin
-for this flu outbreak.
+for this flu sample.
 
 \clearpage
 
