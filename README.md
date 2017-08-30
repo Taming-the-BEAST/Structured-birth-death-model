@@ -225,7 +225,7 @@ To speed up the analysis we will fix this to the actual proportion of invariant 
 
 Next, to set up the substitution model, select `HKY` from the drop-down menu (the default option is `JC69`).
 We would like to estimate the kappa parameter of HKY, so we leave the `Kappa` at the default value of 2.0 and leave the `estimate` checkbox checked.
-As we would also like to estimate nucleotide frequencies, so we leave the `Frequencies` parameter at the default value (`Estimated`).
+We would also like to estimate nucleotide frequencies, so we leave the `Frequencies` parameter at the default value (`Estimated`).
 The BEAUti panel should now look as shown in [Figure 9](#fig:site-model).
 
 <figure>
@@ -237,14 +237,13 @@ The BEAUti panel should now look as shown in [Figure 9](#fig:site-model).
 
 Note that the `Substitution rate` defined on this panel should not be estimated - we use the `Clock rate` defined in the `Clock Model` panel to
 determine the average per unit time rate of sequence evolution.
-This way, the `Substitution rate` is not actually a rate, but rather a rate multiplier that we fix to 1 for better parameter identifiability.
+This way, the `Substitution rate` is not actually a rate, but rather a rate multiplier that we fix to 1 to allow parameter identifiability.
 
 ## Setting the clock model
 
 To speed up the analysis we will assume a strict clock for this small dataset.
-Since our data comes from a single epidemic it is not a far-fetched assumption, however to make sure this assumption holds model comparison is necessary.
-We will not do this here, but selection of clock model for a different, real analysis should not be taken lightly.
-Since our alignment contains sequences sampled at different times and those times are measured in years, we must use a real clock rate expressed in units of expected substitutions per site per year.
+dataset. However, the selection of a clock model for a different, real analysis should not be taken lightly.
+Since our alignment contains sequences sampled at different times and those times are measured in years, we must use a clock rate expressed in units of expected substitutions per site per year.
 Usually the precise value is unknown and so the default behaviour of BEAUti is to assume this rate has to be estimated.
 To speed up mixing we set the starting value of the `Clock rate` to 0.005, which we know from research to be much closer to the truth than the default value of 1.
 The `Clock Model` panel should now look as shown in [Figure 10](#fig:strict-clock).
@@ -267,7 +266,7 @@ The first panel that you see at the top is the tree prior.
 
 `bdmm` is a model that can be used to explain data that is clearly divided into separate partitions, or demes.
 The demes can be geographical locations, as in our example, but the sequences can also be separated through other means than that, e.g. by a specific drug resistance mutation (strains can develop/lose drug resistance and thus move between demes, but can not transfer between demes otherwise), or location in the body (for example, for localised infections caused by the same agent).
-In this dataset we have strains from 2 different locations, New Zealand and Hong Kong, so the `Number of demes` should be set to 2, which luckily also is the default value.
+In this dataset we have strains from 2 different locations, New Zealand and Hong Kong, so the `Number of demes` should be set to 2, which also is the default value.
 Next, `bdmm` lets you estimate the `Reproduction number per type` and the `BecomeUninfectiousRate per type`.
 This will let us see the differences in reproduction fitness and speed of recovery between the two locations, so we leave the `estimate` checkboxes checked.
 We can leave the starting values at default as it will not influence the inference a lot.
@@ -283,7 +282,7 @@ Thus, to do what we want we need to set the values v1 and v3 to zero.
 Because BEAST2 will use scalers to sample new values for the sampling proportions, the values which we set to 0 will remain so.
 Next, we also need to set the `Sampling change time` to the time slightly before the first sample.
 If we look back at the `Tip dates` panel, we can see that our oldest sample is the one labelled as `EU856904_HongKong_2000.09863014`, for which the height, or the length of time from the first sample and the last, is 5.569863.
-We set the sampling change time in time units from the most recent sample and we need to make sure we include the first sample, thus we set the `Sampling change time` to 5.57, which is the height of the first sample rounded slightly up.
+We set the sampling change time in time units from the most recent sample and we need to make sure we include the first sample, thus we set the `Sampling change time` to 5.57, which is the height of the first sample rounded slightly up (and confirm the change with ENTER).
 The final setup of the tree prior can be seen in [Figure 11](#fig:tree-prior).
 
 <figure>
@@ -317,7 +316,7 @@ As one can imagine, the matrix should have the dimensions of N * N, however sinc
 ### Setting up other priors
 
 By default, BEAST2 provides you with a prior distribution for each of the parameters of your model.
-This is done because otherwise BEAUTi will have a hard time displating all of the parameters without any settings provided.
+This is done because otherwise BEAUTi will have a hard time displaying all of the parameters without any settings provided.
 Unfortunately, this means that some priors are very generic, and, moreover, some priors are in fact, improper – the distribution does not integrate to one.
 This means that while the default setup might work and the runs will eventually mix, it can happen that the values are meaningless.
 
@@ -525,7 +524,7 @@ This is a much more comprehensive summary of the phylogenetic side of our analys
 One thing to pay attention to here is that the most probable root location in the summary tree is Hong Kong (under our model which assumes that only Hong Kong and New Zealand exist).
 Hovering the mouse cursor over the tiny edge above the root will bring up a table in which posterior probability of the displayed root location (`type.prob`) can be seen.
 In this analysis we see that it is about 88.8%.
-The analysis therefore strongly supports a Hong Kong origin over a New Zealand origin for this flu outbreak.
+The analysis therefore strongly supports a Hong Kong origin over a New Zealand origin for this flu sample.
 
 <!--[Very useful final notes from Tim](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner%27s-Tutorial-%28short-version%29#final-notes)-->
 
