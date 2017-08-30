@@ -366,22 +366,22 @@ Note that the \lstinline!Substitution rate! defined on this panel should
 not be estimated - we use the \lstinline!Clock rate! defined in the
 \lstinline!Clock Model! panel to determine the average per unit time
 rate of sequence evolution. This way, the \lstinline!Substitution rate!
-is not actually a rate, but rather a rate multiplier that we fix to 1
-to allow parameter identifiability.
+is not actually a rate, but rather a rate multiplier that we fix to 1 to
+allow parameter identifiability.
 
 \subsection{Setting the clock model}\label{setting-the-clock-model}
 
 To speed up the analysis we will assume a strict clock for this small
-dataset. However, the selection of a
-clock model for a different, real analysis should not be taken lightly.
-Since our alignment contains sequences sampled at different times and
-those times are measured in years, we must use a clock rate
-expressed in units of expected substitutions per site per year. Usually
-the precise value is unknown and so the default behaviour of BEAUti is
-to assume this rate has to be estimated. To speed up mixing we set the
-starting value of the \lstinline!Clock rate! to 0.005, which we know
-from research to be much closer to the truth than the default value of
-1. The \lstinline!Clock Model! panel should now look as shown in Figure
+dataset. dataset. However, the selection of a clock model for a
+different, real analysis should not be taken lightly. Since our
+alignment contains sequences sampled at different times and those times
+are measured in years, we must use a clock rate expressed in units of
+expected substitutions per site per year. Usually the precise value is
+unknown and so the default behaviour of BEAUti is to assume this rate
+has to be estimated. To speed up mixing we set the starting value of the
+\lstinline!Clock rate! to 0.005, which we know from research to be much
+closer to the truth than the default value of 1. The
+\lstinline!Clock Model! panel should now look as shown in Figure
 \ref{fig:strict-clock}.
 
 \begin{figure}
@@ -429,25 +429,27 @@ trouble, as \lstinline!bdmm! will try to produce a tree that has the
 same sampling proportion for the whole time, but no samples in the past
 and a lot of samples towards the present. In order to remove that bias
 from the trees, we need to make sure that we only have non-zero sampling
-starting from the first sample date (unless we know that there really weren't 
-any related cases before the first sampled case). To do so, let's look at the
-\lstinline!SamplingProportion per type! field. You will see that it has
-4 values, which correspond to two values per type, lets call them
-{[}v1,v2,v3,v4{]}. v1 and v2 are the values for the first and second
-time interval for the first deme, and v3 and v4 are the values for the
-second deme. Thus, to do what we want we need to set the values v1 and
-v3 to zero. Because BEAST2 will use scalers to sample new values for the
-sampling proportions, the values which we set to 0 will remain so. Next,
-we also need to set the \lstinline!Sampling change time! to the time
-slightly before the first sample. If we look back at the
-\lstinline!Tip dates! panel, we can see that our oldest sample is the
-one labelled as \lstinline!EU856904_HongKong_2000.09863014!, for which
-the height, or the length of time from the first sample and the last, is
-5.569863. We set the sampling change time in time units from the most
-recent sample and we need to make sure we include the first sample, thus
-we set the \lstinline!Sampling change time! to 5.57, which is the height
-of the first sample rounded slightly up (and confirm the change with ENTER). 
-The final setup of the tree prior can be seen in Figure \ref{fig:tree-prior}.
+starting from the first sample date (unless we know that there really
+weren't any related cases before the first sampled case). To do so,
+let's look at the \lstinline!SamplingProportion per type! field. You
+will see that it has 4 values, which correspond to two values per type,
+lets call them {[}v1,v2,v3,v4{]}. v1 and v2 are the values for the first
+and second time interval for the first deme, and v3 and v4 are the
+values for the second deme. Thus, to do what we want we need to set the
+values v1 and v3 to zero. Because BEAST2 will use scalers to sample new
+values for the sampling proportions, the values which we set to 0 will
+remain so. Next, we also need to set the
+\lstinline!Sampling change time! to the time slightly before the first
+sample. If we look back at the \lstinline!Tip dates! panel, we can see
+that our oldest sample is the one labelled as
+\lstinline!EU856904_HongKong_2000.09863014!, for which the height, or
+the length of time from the first sample and the last, is 5.569863. We
+set the sampling change time in time units from the most recent sample
+and we need to make sure we include the first sample, thus we set the
+\lstinline!Sampling change time! to 5.57, which is the height of the
+first sample rounded slightly up (and confirm the change with ENTER).
+The final setup of the tree prior can be seen in Figure
+\ref{fig:tree-prior}.
 
 \begin{figure}
     \centering
@@ -822,8 +824,6 @@ be seen. In this analysis we see that it is about 88.8\%. The analysis
 therefore strongly supports a Hong Kong origin over a New Zealand origin
 for this flu sample.
 
-\clearpage
-
 \section{Acknowledgment}\label{acknowledgment}
 
 The content of this tutorial is based on the
@@ -862,7 +862,7 @@ Version dated: \today
 
 
 
-
+\newpage 
 %%%%%%%%%%%%%%%%
 %  REFERENCES  %
 %%%%%%%%%%%%%%%%

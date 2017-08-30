@@ -274,7 +274,8 @@ We can leave the starting values at default as it will not influence the inferen
 The next important thing one should take care of is setting the sampling proportions appropriately.
 In general, the trees that we build go back in time much further than the first sample that we have.
 If we set the same sampling proportion for the whole time period from our estimated tree origin to the time of the last sample, we will most likely run into trouble, as `bdmm` will try to produce a tree that has the same sampling proportion for the whole time, but no samples in the past and a lot of samples towards the present.
-In order to remove that bias from the trees, we need to make sure that we only have non-zero sampling starting from the first sample date.
+In order to remove that bias from the trees, we need to make sure that we only have non-zero sampling starting from the first sample date (unless we know that there really weren't 
+any related cases before the first sampled case).
 To do so, let's look at the `SamplingProportion per type` field.
 You will see that it has 4 values, which correspond to two values per type, lets call them [v1,v2,v3,v4].
 v1 and v2 are the values for the first and second time interval for the first deme, and v3 and v4 are the values for the second deme.
