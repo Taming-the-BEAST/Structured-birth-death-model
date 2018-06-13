@@ -3,8 +3,8 @@ author: Denise Kühnert, Jūlija Pečerska
 level: Professional
 title: Structured birth-death model
 subtitle: Population structure using the multi-type birth-death model
-beastversion: 2.4.7
-tracerversion: 1.6.0
+beastversion: 2.5.0
+tracerversion: 1.7.0
 ---
 
 
@@ -44,7 +44,7 @@ TreeAnnotator is used to summarise the posterior sample of trees to produce a ma
 TreeAnnotator is provided as a part of the BEAST2 package so you do not need to install it separately.
 
 
-### Tracer 
+### Tracer
 
 Tracer ([http://tree.bio.ed.ac.uk/software/tracer](http://tree.bio.ed.ac.uk/software/tracer)) is used to summarize the posterior estimates of the various parameters sampled by the Markov Chain. This program can be used for visual inspection and to assess convergence. It helps to quickly view median estimates and 95% highest posterior density intervals of the parameters, and calculates the effective sample sizes (ESS) of parameters. It can also be used to investigate potential parameter correlations. We will be using Tracer v{{ page.tracerversion }}.
 
@@ -52,7 +52,7 @@ Tracer ([http://tree.bio.ed.ac.uk/software/tracer](http://tree.bio.ed.ac.uk/soft
 
 IcyTree ([https://icytree.org](https://icytree.org)) is a browser-based phylogenetic tree viewer. It is intended for rapid visualisation of phylogenetic tree files. It can also render phylogenetic networks provided in extended Newick format. IcyTree is compatible with current versions of Mozilla Firefox and Google Chrome.
 
-<!-- and an up-to-date version of 
+<!-- and an up-to-date version of
 [Google Chrome](http://www.google.com/chrome) or
 [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/).-->
 
@@ -67,7 +67,7 @@ You can easily install the `bdmm` package via BEAUti's package manager.  To do t
 
 The BEAUTi window should look similar to what is shown in [Figure 1](#fig:install-bdmm).
 Note the actual version of `bdmm` may differ from the version shown in the figure, which is perfectly normal.
-Also note that `bdmm` depends on the `MultiTypeTree` package. BEAUTi will install the dependencies automatically once you select to install `bdmm`.
+Also note that `bdmm` depends on the `MultiTypeTree` package. And on `MASTER` from version v0.3.0 upward. BEAUTi will install the dependencies automatically once you select to install `bdmm`.
 
 <figure>
 	<a id="fig:install-bdmm"></a>
@@ -77,6 +77,8 @@ Also note that `bdmm` depends on the `MultiTypeTree` package. BEAUTi will instal
 <br>
 
 Finally, **restart BEAUti.**  The restart is necessary for the packages to be successfully installed.
+
+If you get an error message stating that you are missing a package on which `bdmm` depends, install that package manually using the package manager as done above, and **restart BEAUti** again.
 
 # Setting up the analysis using BEAUti
 
@@ -120,9 +122,9 @@ following.  In general, these labels have no special format, but in this file
 each label is an underscore-delimited triple.  The first element of each triple
 is the GenBank accession number of the sequence, the second is the geographical
 region from which it was sampled, and the third is the time at which it was
-sampled measured in calendar years or fractions thereof. 
+sampled measured in calendar years or fractions thereof.
 
-In this tutorial we will be using the influenza sequence data which can be found in the `examples` folder of the `MultiTypeTree` package. 
+In this tutorial we will be using the influenza sequence data which can be found in the `examples` folder of the `MultiTypeTree` package.
 To make it easier to find when loading the alignment, you can optionally set the working directory of BEAST2 to `MultiTypeTree`.
 This will make BEAUTi open the appropriate package folder when you look for the alignment.
 To set the working directory, select `File > Set working dir > MultiTypeTree`, as shown in [Figure 3](#fig:working-dir).
@@ -186,7 +188,7 @@ The BEAUTi panel should look as shown in [Figure 6](#fig:tip-dates).
 Now that we've specified the sampling times, we move on to specifying the sampling locations.
 To do this, we follow a very similar set of steps to those we used to set the sample times:
 
-1. Select the `Tip Locations` panel. You'll find that the locations are already filled with a single default value – `NOT_SET`. 
+1. Select the `Tip Locations` panel. You'll find that the locations are already filled with a single default value – `NOT_SET`.
 2. Click the `Guess` button at the top-right of the panel. This opens the same dialog that we saw in the previous section when setting up the dates.
 3. The locations are included as the second element of the underscore-delimited sequence names.
 Therefore we choose the `split on character` radio button and select group `2` from the drop-down menu.
@@ -274,7 +276,7 @@ We can leave the starting values at default as it will not influence the inferen
 The next important thing one should take care of is setting the sampling proportions appropriately.
 In general, the trees that we build go back in time much further than the first sample that we have.
 If we set the same sampling proportion for the whole time period from our estimated tree origin to the time of the last sample, we will most likely run into trouble, as `bdmm` will try to produce a tree that has the same sampling proportion for the whole time, but no samples in the past and a lot of samples towards the present.
-In order to remove that bias from the trees, we need to make sure that we only have non-zero sampling starting from the first sample date (unless we know that there really weren't 
+In order to remove that bias from the trees, we need to make sure that we only have non-zero sampling starting from the first sample date (unless we know that there really weren't
 any related cases before the first sampled case).
 To do so, let's look at the `SamplingProportion per type` field.
 You will see that it has 4 values, which correspond to two values per type, lets call them [v1,v2,v3,v4].
@@ -293,7 +295,7 @@ The final setup of the tree prior can be seen in [Figure 11](#fig:tree-prior).
 </figure>
 <br>
 
-<!--When you expand the tree prior element, you can change the condition on survival setting. We'll leave the box checked. 
+<!--When you expand the tree prior element, you can change the condition on survival setting. We'll leave the box checked.
 
 <figure>
 	<a id="fig:"></a>
@@ -388,7 +390,7 @@ We will leave the `MCMC` panel parameters as they are by default.
 # Running the analysis using BEAST
 
 To run the analysis, simply start BEAST 2 in the manner appropriate for your platform, then select the configuration file you generated in the last section as the input.
-Unfortunately, this particular run will take quite some time to mix, e.g. on a 2.5 GHz i7 MacBook Pro it takes about 6 hours for 10'000'000 samples.
+Unfortunately, this particular run will take quite some time to mix, e.g. on a MacBook Pro with 3.1 GHz Intel Core i5 processor it takes about 3 hours for 10'000'000 samples.
 Feel free to run it and observe the results, but for the purpose of finishing the tutorial in a reasonable time, check out the provided log file to see the results.
 
 # Analyzing the results
@@ -411,6 +413,7 @@ Select the log file for this analysis (`h3n2_2deme.log`) from the file selection
 You can also simply drag your log file from the file browser to the Tracer window.
 The `Traces` table will then be populated with parameters and summary
 statistics corresponding to our multitype birth-death analysis.
+Note that the screen captures below were taken using Tracer 1.6 and may therefore slightly differ from what you see on screen.
 
 Important traces are:
 
@@ -508,8 +511,8 @@ Pressing the `Run` button will produce an annotated summary tree.
 To visualize this tree, open IcyTree once more (maybe open it in a new browser tab), choose `File > Open`, then select the file `h3n2_2deme.h3n2_2deme.summary.tree` using the file selection dialog.
 Follow the instructions provided above to colour the tree by the `type` attribute and add the legend and time axis.
 In addition, open the `Style` menu and select `Node height error bars > height_95%_HPD` to add error bars to the internal node heights.
-Finally, open the `Style` menu and select `Edge opacity > type.prob`.
-This make cause the edges become increasingly transparent as the posterior probability for the displayed branch decreases.
+Finally, open the `Style` menu and select `Relative edge width > type.prob`.
+This makes the edges become increasingly thinner as the posterior probability for the displayed branch decreases.
 
 Once these style preferences have been set, you should see something similar to the tree shown in [Figure 21](#fig:icyTree-summary).
 
@@ -520,7 +523,7 @@ Once these style preferences have been set, you should see something similar to 
 </figure>
 <br>
 
-Here we have a full consensus tree annotated by the locations at coalescence nodes and showing node height uncertainty, with the width/transparency of the edges representing how certain we can be of the location estimate at each point on the tree.
+Here we have a full consensus tree annotated by the locations at coalescence nodes and showing node height uncertainty, with the width of the edges representing how certain we can be of the location estimate at each point on the tree.
 This is a much more comprehensive summary of the phylogenetic side of our analysis.
 One thing to pay attention to here is that the most probable root location in the summary tree is Hong Kong (under our model which assumes that only Hong Kong and New Zealand exist).
 Hovering the mouse cursor over the tiny edge above the root will bring up a table in which posterior probability of the displayed root location (`type.prob`) can be seen.
@@ -533,7 +536,7 @@ The analysis therefore strongly supports a Hong Kong origin over a New Zealand o
 
 #Acknowledgment
 
-The content of this tutorial is based on the [Structured Coalescent tutorial](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version)) by Tim Vaughan.
+The content of this tutorial is based on the [Structured Coalescent tutorial](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version) by Tim Vaughan.
 
 # Useful Links
 
@@ -546,4 +549,3 @@ The content of this tutorial is based on the [Structured Coalescent tutorial](ht
 # Relevant References
 
 {% bibliography --cited --file Structured-birth-death-model/refs %}
-
