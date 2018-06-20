@@ -329,7 +329,6 @@ In epidemiology, the basic reproduction number, R<sub>0</sub>, of an infection i
 Even though we do not have any information on R<sub>0</sub> in the particular outbreak, infections rarely have R<sub>0</sub> > 10, so we can set an upper limit on the sampled values.
 To do so, in the line denoted `R0.t:h3n2_2deme` click the button captioned `initial = [2.0, 2.0] [0.0, Infinity]` to get a pop up settings window (see [Figure 12](#fig:R0-prior)), where you can set the upper value.
 Other than that, the current prior sets ther median value of the distribution to e<sup>0</sup> = 1, which will fit the endemic case of influenza.
-<!--Should we also have multiple dimensions for R0 here?-->
 
 <figure>
 	<a id="fig:R0-prior"></a>
