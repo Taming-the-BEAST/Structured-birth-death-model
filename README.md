@@ -329,7 +329,7 @@ The first important parameter is R<sub>0</sub>.
 In epidemiology, the basic reproduction number, R<sub>0</sub>, of an infection is the number of secondary cases one case generates on average over the course of its infectious period, in an otherwise uninfected population.
 The default prior sets the median value of the distribution to e<sup>0</sup> = 1, which will fit the endemic case of influenza.
 
-<!--- todo: adjust figure (and ideally analysis files) to remove the upper bound of 10, it shouldn't be necessary -->
+<!-- todo: adjust figure (and ideally analysis files) to remove the upper bound of 10, it shouldn't be necessary -->
 
 <figure>
 	<a id="fig:R0-prior"></a>
@@ -379,7 +379,7 @@ You can see the sampling prior setup in [Figure 15](#fig:samplingProportion-prio
 	<figcaption>Figure 15: Set the prior for sampling proportion.</figcaption>
 </figure>
 <br>
-<!--- todo:  In Figure 15 (sampling proportion prior) muss noch die "Mean in Real Space"-Box einen Haken haben -->
+<!-- todo:  In Figure 15 (sampling proportion prior) muss noch die "Mean in Real Space"-Box einen Haken haben -->
 
 
 For the purpose of this tutorial and given that we know little about the outbreak in question to set strict priors on the `rateMatrix`, we will leave the other priors on the default values, but feel free to through them yourself and verify their sensibility.
