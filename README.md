@@ -266,7 +266,7 @@ Thus it is particularly important for the analysis that we properly set up the p
 First, let's talk about the values that need to be set on the `Priors` panel.
 The first panel that you see at the top is the tree prior.
 
-`bdmm` is a model that can be used to explain data that is clearly divided into separate partitions, or demes. 
+`bdmm` is a model that can be used to explain data that is clearly divided into separate partitions, or demes.
 (We will use the terms deme, partition and type interchangeably here.)
 The demes can be geographical locations, as in our example, but the sequences can also be separated through other means than that, e.g. by a specific drug resistance mutation (strains can develop/lose drug resistance and thus move between demes, but can not transfer between demes otherwise), or location in the body (for example, for localised infections caused by the same agent).
 In this dataset we have strains from 2 different locations, New Zealand and Hong Kong, so the `Number of demes` should be set to 2, which also is the default value.
