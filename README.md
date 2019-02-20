@@ -329,7 +329,7 @@ The first important parameter is R<sub>0</sub>.
 In epidemiology, the basic reproduction number, R<sub>0</sub>, of an infection is the number of secondary cases one case generates on average over the course of its infectious period, in an otherwise uninfected population.
 The default prior sets the median value of the distribution to e<sup>0</sup> = 1, which will fit the endemic case of influenza.
 
-<!-- todo: adjust figure (and ideally analysis files) to remove the upper bound of 10, it shouldn't be necessary -->
+<!-- todo: (ideally) adjust analysis files to remove the upper bound of 10, it shouldn't be necessary -->
 
 <figure>
 	<a id="fig:R0-prior"></a>
@@ -370,7 +370,7 @@ Lastly, we will set the sampling proportion prior to a more narrow distribution 
 Taking into account that we are also using a thinned-down version of the dataset, we can use a diffuse prior with the mean around 10<sup>-3</sup>.
 The default prior for the sampling proportion is a `Beta` distribution, which is only defined between 0 and 1, making it a natural choice for proportions.
 Here, however, we will use a `Log Normal` prior, with the mean `M` at 10<sup>-3</sup> and the standard deviation `S` at 1.25 to allow a lot of variance.
-Once again we need to check that the `Mean in Real Space` checkbox is checked, and since the `Log Normal` distribution is defined outside the range of [0, 1] we also need to check that the `Lower` and `Upper` limits are set accordingly.
+Once again we need to check that the `Mean in Real Space` checkbox is checked, and since the `Log Normal` distribution is defined outside the range of [0, 1] we also need to check that the `Lower` and `Upper` limits are set accordingly. Do so by clicking on the button showing the initial values, next to the distribution type.
 You can see the sampling prior setup in [Figure 15](#fig:samplingProportion-prior)
 
 <figure>
@@ -379,7 +379,6 @@ You can see the sampling prior setup in [Figure 15](#fig:samplingProportion-prio
 	<figcaption>Figure 15: Set the prior for sampling proportion.</figcaption>
 </figure>
 <br>
-<!-- todo:  In Figure 15 (sampling proportion prior) muss noch die "Mean in Real Space"-Box einen Haken haben -->
 
 
 For the purpose of this tutorial and given that we know little about the outbreak in question to set strict priors on the `rateMatrix`, we will leave the other priors on the default values, but feel free to through them yourself and verify their sensibility.
@@ -425,7 +424,7 @@ Important traces are:
 
 * `rateMatrix.t:h3n2_2deme1` and `rateMatrix.t:h3n2_2deme2`: These give the (per lineage per year) migration rates from deme 1 to 2 and vice versa.
 
-* `Tree.t:h3n2_2deme.count_HongKong_to_NewZealand`: these give the actual number of ancestral migrations from Hong Kong to New Zealand.
+* `Tree.t:h3n2_2deme.count_HongKong_to_NewZealand`: these give the number of ancestral migrations from Hong Kong to New Zealand on the inferred tree, going from past to present.
 
 The tabs at the top-right of the window can be used to display one or more selected traces in various ways.
 We can look at the become uninfectious rate by selecting the `becomeUninfectiousRate.t:h3n2_2deme1` trace (see [Figure 16](#fig:tracer-bUR)).
