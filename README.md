@@ -424,7 +424,7 @@ Important traces are:
 
 * `rateMatrix.t:h3n2_2deme1` and `rateMatrix.t:h3n2_2deme2`: These give the (per lineage per year) migration rates from deme 1 to 2 and vice versa.
 
-* `Tree.t:h3n2_2deme.count_HongKong_to_NewZealand`: these give the number of ancestral migrations from Hong Kong to New Zealand on the inferred tree, going from past to present.
+* `Tree.t:h3n2_2deme.count_HongKong_to_NewZealand`: these give the number of ancestral migrations from Hong Kong to New Zealand on the inferred tree, **backwards in time**.
 
 The tabs at the top-right of the window can be used to display one or more selected traces in various ways.
 We can look at the become uninfectious rate by selecting the `becomeUninfectiousRate.t:h3n2_2deme1` trace (see [Figure 16](#fig:tracer-bUR)).
