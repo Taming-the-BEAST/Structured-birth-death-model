@@ -535,9 +535,9 @@ The analysis therefore strongly supports a Hong Kong origin over a New Zealand o
 
 ----
 
-#Acknowledgment
+# Acknowledgment
 
-The content of this tutorial is based on the [Structured Coalescent tutorial](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version) by Tim Vaughan.
+The content of this tutorial is based on the [Structured Coalescent tutorial](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version)) by Tim Vaughan.
 
 # Useful Links
 
