@@ -3,8 +3,8 @@ author: Denise Kühnert, Jūlija Pečerska
 level: Professional
 title: Structured birth-death model
 subtitle: Population structure using the multi-type birth-death model
-beastversion: 2.5.2
-tracerversion: 1.7.0
+beastversion: 2.7.4
+tracerversion: 1.7.2
 ---
 
 
@@ -46,7 +46,7 @@ TreeAnnotator is provided as a part of the BEAST2 package so you do not need to 
 
 ### Tracer
 
-Tracer ([http://tree.bio.ed.ac.uk/software/tracer](http://tree.bio.ed.ac.uk/software/tracer)) is used to summarize the posterior estimates of the various parameters sampled by the Markov Chain. This program can be used for visual inspection and to assess convergence. It helps to quickly view median estimates and 95% highest posterior density intervals of the parameters, and calculates the effective sample sizes (ESS) of parameters. It can also be used to investigate potential parameter correlations. We will be using Tracer v{{ page.tracerversion }}.
+Tracer ([https://github.com/beast-dev/tracer/releases/tag/v1.7.2](https://github.com/beast-dev/tracer/releases/tag/v1.7.2)) is used to summarize the posterior estimates of the various parameters sampled by the Markov Chain. This program can be used for visual inspection and to assess convergence. It helps to quickly view median estimates and 95% highest posterior density intervals of the parameters, and calculates the effective sample sizes (ESS) of parameters. It can also be used to investigate potential parameter correlations. We will be using Tracer v{{ page.tracerversion }}.
 
 ### IcyTree
 
@@ -62,7 +62,7 @@ IcyTree ([https://icytree.org](https://icytree.org)) is a browser-based phylogen
 You can easily install the `bdmm` package via BEAUti's package manager.  To do this, follow these steps:
 
 1. Start BEAUti;
-2. In the application menu, `File > Manage packages`.
+2. In the application menu, `File > Manage Packages`.
 3. Find `bdmm` in the list of packages shown, select it and then click `Install/Upgrade`.
 
 The BEAUTi window should look similar to what is shown in [Figure 1](#fig:install-bdmm).
@@ -82,7 +82,7 @@ If you get an error message stating that you are missing a package on which `bdm
 
 # Setting up the analysis using BEAUti
 
-## Loading the Template
+## Loading the template
 
 A BEAUTi template defines the basic structure and contents of your XML configuration file.
 By default BEAUTi will construct an XML file with standard uncoloured BEAST trees, however `bdmm` uses coloured trees which are defined in the `MultiTypeTree` package.
@@ -98,23 +98,19 @@ To use the appropriate template for the configuration file, select `File > Templ
 
 ## Loading the data
 
-Once the template is loaded, we can load in our example sequence data.  In our case, this data is stored in a FASTA file, the first few lines of which look like this (the sequences have been truncated for better readability):
+Once the template is loaded, we can load in our example sequence data.  In our case, these data are stored in a FASTA file, the first few lines of which look like this (the sequences have been truncated for better readability):
 
 ```
 > EU856841_HongKong_2005.34246575
------------GGGATAATTCTATTAACCATGAAGACTATCATTGCTTTGAGCTACATTT...
+-----------ATGAAGACTATCATTGCTTTGAGCTACATTCTATGTCTGGTTTTCGCTC...
 > EU856989_HongKong_2002.58356164
---CAAAAGCAGGGGATAATTCTATTAACCATGAAGACTATCATTGCTTTGAGCTACATTT...
+-----------ATGAAGACTATCATTGCTTTGAGCTACATTCTATGTCTGGTTTTCGCTC...
 > CY039495_HongKong_2004.5890411
-------------------TTCTATTAACCATGAAGACTATCATTGCTTTGAGCTACATTC...
+-----------ATGAAGACTATCATTGCTTTGAGCTACATTCTATGTCTGGTTTTCGCTC...
 > EU856853_HongKong_2001.17808219
----------------------TATTAACCATGAAGACTATCATTGCTTTGAGCTACATTC...
-> CY010084_NewZealand_2005.62739726
----------------------TATTAACCATGAAGACTATCATTGCTTTGAGCTACATTC...
-> CY007387_NewZealand_2004.63287671
----------------------TATTAACCATGAAGACTATCATTGCTTTGAGCTACATTC...
-> CY012432_NewZealand_2000.81643836
----------------------------CCATGAAGACTATCATTGCTTTGAGCTACATTT...
+-----------ATGAAGACTATCATTGCTTTGAGCTACATTTTATGTCTGGTTTTCGCTC...
+> EU857026_HongKong_2003.51232877
+-----------ATGAAGGCTATCATTGCTTTGAGCTACATTCTATGTCTGGTTTTCGCTC...
 ```
 
 The lines beginning with ">" are labels for the sequences immediately
@@ -136,7 +132,7 @@ To set the working directory, select `File > Set working dir > MultiTypeTree`, a
 </figure>
 <br>
 
-To load the file, select `File > Add alignment`.
+To load the file, select `File > Add Alignment`.
 
 This will open a file selection dialog box.  The example influenza sequence data
 file is named `h3n2_2deme.fna`.
@@ -189,7 +185,7 @@ Now that we've specified the sampling times, we move on to specifying the sampli
 To do this, we follow a very similar set of steps to those we used to set the sample times:
 
 1. Select the `Tip Locations` panel. You'll find that the locations are already filled with a single default value – `NOT_SET`.
-2. Click the `Guess` button at the top-right of the panel. This opens the same dialog that we saw in the previous section when setting up the dates.
+2. Click the `Guess` button at the top-left of the panel. This opens the same dialog that we saw in the previous section when setting up the dates.
 3. The locations are included as the second element of the underscore-delimited sequence names.
 Therefore we choose the `split on character` radio button and select group `2` from the drop-down menu.
 Note again that the underscore character is already chosen as the delimiter.
@@ -215,19 +211,16 @@ The BEAUTi panel should look as shown in [Figure 8](#fig:tip-types-set).
 
 ## Setting the substitution model
 
-For this analysis, we will use the HKY substitution model with 4 gamma categories and estimated base frequencies.
+For this analysis, we will use the JC69 substitution model with 4 gamma categories.
 To configure this in BEAUti, switch to the `Site Model` panel.
 First, we need to set up the rate category count.
 To approximate the continuous gamma rate distribution BEAST2 uses the discrete gamma distribution, where sites are divided into k equally probable rate categories.
-In general, 4-6 categories work well for most datasets, while having more categories involve a lot of computation at little precision gain, so we set the `Gamma category count` to 4.
+In general, 4-6 categories work well for most datasets, while having more categories involve a lot of computation at little precision gain, so we set the `Gamma Category Count` to 4.
 We would also like to estimate the `Shape` parameter, which describes the shape of the continuous gamma distribution we approximate.
 To do so, we need to set it to a non-zero value (e.g. the default 1.0) and tick the `estimate` checkbox.
 While the gamma categories account for rate variation, allowing some sites to have an evolutionary rate of 0 can improve fit to real data.
 To speed up the analysis we will fix this to the actual proportion of invariant sites we have in our alignment, which is 0.867.
-
-Next, to set up the substitution model, select `HKY` from the drop-down menu (the default option is `JC69`).
-We would like to estimate the kappa parameter of HKY, so we leave the `Kappa` at the default value of 2.0 and leave the `estimate` checkbox checked.
-We would also like to estimate nucleotide frequencies, so we leave the `Frequencies` parameter at the default value (`Estimated`).
+We leave the substitution model to the default option `JC69`.
 The BEAUti panel should now look as shown in [Figure 9](#fig:site-model).
 
 <figure>
@@ -257,7 +250,7 @@ The `Clock Model` panel should now look as shown in [Figure 10](#fig:strict-cloc
 </figure>
 <br>
 
-## Adjusting Priors
+## Adjusting priors
 
 ### Setting up the `bdmm` tree prior
 
@@ -381,7 +374,7 @@ You can see the sampling prior setup in [Figure 15](#fig:samplingProportion-prio
 <br>
 
 
-For the purpose of this tutorial and given that we know little about the outbreak in question to set strict priors on the `rateMatrix`, we will leave the other priors on the default values, but feel free to through them yourself and verify their sensibility.
+For the purpose of this tutorial and given that we know little about the outbreak in question to set strict priors on the `rateMatrix`, we will leave the other priors on the default values, but feel free to go through them yourself and verify their sensibility.
 
 ## Saving the configuration
 
@@ -408,30 +401,29 @@ we'll use to assemble a summary tree.
 
 ## Parameter log file analysis
 
-We can use the program [Tracer](http://tree.bio.ed.ac.uk/software/tracer/) to view the parameter log file.
-To do this, start Tracer and then press the `+` button in the top-left hand corner of the window (under `Trace files`).
-Select the log file for this analysis (`h3n2_2deme.log`) from the file selection dialog box.
+We can use the program [Tracer](https://github.com/beast-dev/tracer/releases/tag/v1.7.2) to view the parameter log file.
+To do this, start Tracer and then press the `+` button in the top-left hand corner of the window (under `Trace File`).
+Select the log file for this analysis (`h3n2-bdmm.log`) from the file selection dialog box.
 You can also simply drag your log file from the file browser to the Tracer window.
 The `Traces` table will then be populated with parameters and summary
 statistics corresponding to our multitype birth-death analysis.
-Note that the screen captures below were taken using Tracer 1.6 and may therefore slightly differ from what you see on screen.
 
 Important traces are:
 
-* `R0.t:h3n2_2deme1` and `R0.t:h3n2_2deme2`: These give the effective reproduction numbers for deme 1 (Hong Kong) and 2 (New Zealand), respectively.
+* `R0.t:h3n2_2deme.1` and `R0.t:h3n2_2deme.2`: These give the effective reproduction numbers for deme 1 (Hong Kong) and 2 (New Zealand), respectively.
 
-* `becomeUninfectiousRate.t:h3n2_deme21` and `becomeUninfectiousRate.t:h3n2_deme22`: These are the rates of recovery for someone with flu in either of the locations.
+* `becomeUninfectiousRate.t:h3n2_2deme.1` and `becomeUninfectiousRate.t:h3n2_2deme.2`: These are the rates of recovery for someone with flu in either of the locations.
 
-* `rateMatrix.t:h3n2_2deme1` and `rateMatrix.t:h3n2_2deme2`: These give the (per lineage per year) migration rates from deme 1 to 2 and vice versa.
+* `rateMatrix.t:h3n2_2deme.1` and `rateMatrix.t:h3n2_2deme.2`: These give the (per lineage per year) migration rates from deme 1 to 2 and vice versa.
 
 * `Tree.t:h3n2_2deme.count_HongKong_to_NewZealand`: these give the number of ancestral migrations from Hong Kong to New Zealand on the inferred tree, **backwards in time**.
 
 The tabs at the top-right of the window can be used to display one or more selected traces in various ways.
-We can look at the become uninfectious rate by selecting the `becomeUninfectiousRate.t:h3n2_2deme1` trace (see [Figure 16](#fig:tracer-bUR)).
-The 95% HPD for the parameter is quite wide ([18.2465, 93.2316]), which is most likely due to the fact that we have very little data, however the mean value is 50.102, which gives us an infectious period of 7.3 days.
-Next, selecting the two R<sub>0</sub> traces (`R0.t:h3n2_2deme1` and `R0.t:h3n2_2deme2`) and choosing the `Marginal prob distribution` panel results in useful comparison between the sampled population size marginal posterior distributions (see [Figure 17](#fig:tracer-R0)).
+We can look at the become uninfectious rate by selecting the `becomeUninfectiousRate.t:h3n2_2deme.1` trace (see [Figure 16](#fig:tracer-bUR)).
+The 95% HPD for the parameter is quite wide ([18.699, 88.5431]), which is most likely due to the fact that we have very little data, however the mean value is 49.3247, which gives us an infectious period of 7.4 days.
+Next, selecting the two R<sub>0</sub> traces (`R0.t:h3n2_2deme.1` and `R0.t:h3n2_2deme.2`) and choosing the `Marginal Density` panel results in useful comparison between the sampled population size marginal posterior distributions (see [Figure 17](#fig:tracer-R0)).
 Looking at the posterior distributions we can not see any significant difference in R<sub>0</sub> between the two demes.
-While the distributions are visibly different, they cover the same parameter range (deme 1 95% HPD interval [0.991, 1.0247], deme 2 95% HPD interval [0.9096, 1.0413]), so the values are indistinguishable through such analysis.
+While the distributions are visibly different, they cover the same parameter range (deme 1 95% HPD interval [0.9922, 1.0258], deme 2 95% HPD interval [0.9057, 1.038]), so the values are indistinguishable through such analysis.
 
 <figure>
 	<a id="fig:tracer-bUR"></a>
@@ -509,7 +501,7 @@ The setup can be seen in [Figure 20](#fig:TreeAnnotator-setup).
 
 Pressing the `Run` button will produce an annotated summary tree.
 
-To visualize this tree, open IcyTree once more (maybe open it in a new browser tab), choose `File > Open`, then select the file `h3n2_2deme.h3n2_2deme.summary.tree` using the file selection dialog.
+To visualize this tree, open IcyTree once more (maybe open it in a new browser tab), choose `File > Load from file`, then select the file `h3n2-bdmm.h3n2_2deme.summary.trees` using the file selection dialog.
 Follow the instructions provided above to colour the tree by the `type` attribute and add the legend and time axis.
 In addition, open the `Style` menu and select `Node height error bars > height_95%_HPD` to add error bars to the internal node heights.
 Finally, open the `Style` menu and select `Relative edge width > type.prob`.
@@ -528,7 +520,7 @@ Here we have a full consensus tree annotated by the locations at coalescence nod
 This is a much more comprehensive summary of the phylogenetic side of our analysis.
 One thing to pay attention to here is that the most probable root location in the summary tree is Hong Kong (under our model which assumes that only Hong Kong and New Zealand exist).
 Hovering the mouse cursor over the tiny edge above the root will bring up a table in which posterior probability of the displayed root location (`type.prob`) can be seen.
-In this analysis we see that it is about 88.8%.
+In this analysis we see that it is about 91%.
 The analysis therefore strongly supports a Hong Kong origin over a New Zealand origin for this flu sample.
 
 <!--[Very useful final notes from Tim](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner%27s-Tutorial-%28short-version%29#final-notes)-->
