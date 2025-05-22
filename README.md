@@ -39,7 +39,7 @@ Both BEAST2 and BEAUti2 are Java programs, which means that the exact same code 
 
 ### TreeAnnotator
 
-TreeAnnotator is used to summarise the posterior sample of trees to produce a maximum clade credibility tree. It can also be used to summarise and visualise the posterior estimates of other tree parameters (e.g. node height).
+TreeAnnotator is used to produce a summary tree from the posterior sample of trees using one of the available algorithms. It can also be used to summarise and visualise the posterior estimates of other tree parameters (e.g. node height).
 
 TreeAnnotator is provided as a part of the BEAST2 package so you do not need to install it separately.
 
@@ -61,9 +61,11 @@ IcyTree ([https://icytree.org](https://icytree.org)) is a browser-based phylogen
 
 You can easily install the `bdmm` package via BEAUti's package manager.  To do this, follow these steps:
 
-1. Start BEAUti;
-2. In the application menu, `File > Manage Packages`.
-3. Find `bdmm` in the list of packages shown, select it and then click `Install/Upgrade`.
+> Start BEAUti;
+>
+> In the application menu, **File** > **Manage Packages**.
+>
+> Find **bdmm** in the list of packages shown, select it and then click **Install/Upgrade**.
 
 The BEAUTi window should look similar to what is shown in [Figure 1](#fig:install-bdmm).
 Note the actual version of `bdmm` may differ from the version shown in the figure, which is perfectly normal.
@@ -152,11 +154,14 @@ Once the sequence file is loaded, your BEAUti screen should look similar to what
 
 Once the data is loaded, the next step is to specify the times at which the sequences were sampled:
 
-1. Select the `Tip Dates` panel.
-2. Check the `Use tip dates` checkbox.
-3. Click the `Auto-configure` button at the top-right of the panel.
-This opens a dialog that allows sample times to be loaded from a file or inferred (guessed) from the sequence labels.
-4. Because the times are included as the last element of the underscore-delimited sequence names, choose the `use everything` radio button and select `after last` from the drop-down menu. The default delimiter is already the underscore, so there is no need to change that.
+> Select the **Tip Dates** panel.
+>
+> Check the **Use tip dates** checkbox.
+>
+> Click the **Auto-configure** button at the top-right of the panel.
+> This opens a dialog that allows sample times to be loaded from a file or inferred (guessed) from the sequence labels.
+>
+> Because the times are included as the last element of the underscore-delimited sequence names, choose the **use everything** radio button and select **after last** from the drop-down menu. The default delimiter is already the underscore, so there is no need to change that.
 
 The date parsing setup will look as shown in [Figure 5](#fig:tip-dates).
 
@@ -184,10 +189,12 @@ The BEAUTi panel should look as shown in [Figure 6](#fig:tip-dates).
 Now that we've specified the sampling times, we move on to specifying the sampling locations.
 To do this, we follow a very similar set of steps to those we used to set the sample times:
 
-1. Select the `Tip Locations` panel. You'll find that the locations are already filled with a single default value – `NOT_SET`.
-2. Click the `Guess` button at the top-left of the panel. This opens the same dialog that we saw in the previous section when setting up the dates.
-3. The locations are included as the second element of the underscore-delimited sequence names.
-Therefore we choose the `split on character` radio button and select group `2` from the drop-down menu.
+> Select the **Tip Locations** panel. You'll find that the locations are already filled with a single default value – **NOT_SET**.
+> 
+> Click the **Guess** button at the top-left of the panel. This opens the same dialog that we saw in the previous section when setting up the dates.
+>
+> The locations are included as the second element of the underscore-delimited sequence names.
+Therefore we choose the **split on character** radio button and select group **2** from the drop-down menu.
 Note again that the underscore character is already chosen as the delimiter.
 
 The location parsing setup will look as shown in [Figure 7](#fig:tip-types).
@@ -487,32 +494,71 @@ While it is tempting to view the MAP tree shown above as the primary result of t
 This is an important drawback, as we have done a full Bayesian analysis and have access to a large number of samples from the full posterior in the tree log files.
 The MAP tree discards almost all of this information.
 
-We can make better use of our raw analysis results by using the `TreeAnnotator` program which is distributed with BEAST2 to analyze the sample of trees which was produced by our MCMC run.
-To do this, simply start `TreeAnnotator` and select the `h3n2-bdmm.h3n2_2deme.typedNode.trees` tree file as the input file and `h3n2-bdmm.h3n2_2deme.summary.trees` as the output file.
-We will set the `Burnin percentage` to 10, the `Target tree type` to the `Maximum clade credibility tree` (default) and for the `Node heights` we would like to have `Mean heights`.
+We can make better use of our raw analysis results by using the `TreeAnnotator` program which is distributed with BEAST2 to analyze the sample of trees which was produced by our MCMC run. Until recently the _maximum clade credibility_ tree (MCC) has been the default summary method in TreeAnotator. To produce MCC trees TreeAnotator takes the set of trees and find the best supported tree by maximising the product of the posterior clade probabilities. It will then annotate this representative summary tree with the mean ages of all the nodes and the corresponding 95% HPD ranges as well as the posterior clade probability for each node. A new point estimate, called a _conditional clade distribution_ tree (CCD) has been proposed {% cite berling2025 --file Structured-birth-death-model/refs.bib %}. It has been shown to outperform MCC in terms of accuracy (based on Robinson-Foulds distance to the true tree) and precision (how different are the point estimates calculated for replicate MCMC chains). CCD methods may produce a tree that would be well supported but has not been sampled during MCMC. This is beneficial for large trees and complex parameter regimes. Since both methods are still widely used, we show how to use them to summarise the posterior tree distribution. **To save time, you may run just one method and compare it to the other using the example below.**
+
+### Producing MCC tree
+
+> Start **TreeAnnotator**
+> 
+> Set the **Burnin percentage** to **10%** to discard the first 10% of trees in the log file.
+> 
+> Set the **Target tree type** to the **Maximum clade credibility tree** and set **Node heights** to **Mean heights**.
+> 
+> Select the `h3n2-bdmm.h3n2_2deme.typedNode.trees` tree file as the input file and `h3n2-bdmm.h3n2_2deme.mcc_summary.trees` as the output file
+> 
+> Pressing the **Run** button will produce an annotated summary tree.
+
 The setup can be seen in [Figure 20](#fig:TreeAnnotator-setup).
 
 <figure>
 	<a id="fig:TreeAnnotator-setup"></a>
 	<img style="width:75%;" src="figures/20-TreeAnnotator-setup.png" alt="">
-	<figcaption>Figure 20: Use TreeAnnotator to produce a summary tree.</figcaption>
+	<figcaption>Figure 20: Use TreeAnnotator to produce a MCC summary tree.</figcaption>
 </figure>
 <br>
 
-Pressing the `Run` button will produce an annotated summary tree.
+### Producing CCD0 tree
 
-To visualize this tree, open IcyTree once more (maybe open it in a new browser tab), choose `File > Load from file`, then select the file `h3n2-bdmm.h3n2_2deme.summary.trees` using the file selection dialog.
+To produce CCD0 summary tree, you will first need to install the CCD package.
+> Open BEAUTi
+> 
+> Select **File** >> **Manage packages**
+> 
+> Select **CCD** package in the list and select **Install/Upgrade**
+> 
+> Close BEAUTi
+
+<figure>
+	<a id="fig:installCCD"></a>
+	<img style="width:80%;" src="figures/installCCD0.png">
+	<figcaption>Figure 21: Install CCD package</figcaption>
+</figure>
+<br>
+
+Now you can proceed to make CCD0 tree. Use the exactly same set up as for MCC tree but select **MAP (CCD0)** as **Target tree type** and `h3n2-bdmm.h3n2_2deme.ccd0_summary.trees` as the output file.
+
+
+## Visualising the summary tree
+
+To visualize this tree, open IcyTree once more (maybe open it in a new browser tab), choose `File > Load from file`, then use file selection dialog and select either select either `h3n2-bdmm.h3n2_2deme.mcc_summary.trees` or `h3n2-bdmm.h3n2_2deme.ccd0_summary.trees` to load MCC or CCD0 summary tree respectivelly.
 Follow the instructions provided above to colour the tree by the `type` attribute and add the legend and time axis.
 In addition, open the `Style` menu and select `Node height error bars > height_95%_HPD` to add error bars to the internal node heights.
 Finally, open the `Style` menu and select `Relative edge width > type.prob`.
 This makes the edges become increasingly thinner as the posterior probability for the displayed branch decreases.
 
-Once these style preferences have been set, you should see something similar to the tree shown in [Figure 21](#fig:icyTree-summary).
+Once these style preferences have been set, you should see something similar to the MCC tree shown in [Figure 22](#fig:icyTree-mcc) or CCD0 tree shown in [Figure 23](#fig:icyTree-ccd0).
 
 <figure>
-	<a id="fig:icyTree-summary"></a>
-	<img style="width:100%;" src="figures/21-icyTree-summary.png" alt="">
-	<figcaption>Figure 21: The summary tree in IcyTree.</figcaption>
+	<a id="fig:icyTree-mcc"></a>
+	<img style="width:100%;" src="figures/icyTree-mcc.png" alt="">
+	<figcaption>Figure 22: The MCC summary tree in IcyTree.</figcaption>
+</figure>
+<br>
+
+<figure>
+	<a id="fig:icyTree-ccd0"></a>
+	<img style="width:100%;" src="figures/icyTree-ccd0.png" alt="">
+	<figcaption>Figure 23: The CCD0 summary tree in IcyTree.</figcaption>
 </figure>
 <br>
 
@@ -522,6 +568,12 @@ One thing to pay attention to here is that the most probable root location in th
 Hovering the mouse cursor over the tiny edge above the root will bring up a table in which posterior probability of the displayed root location (`type.prob`) can be seen.
 In this analysis we see that it is about 91%.
 The analysis therefore strongly supports a Hong Kong origin over a New Zealand origin for this flu sample.
+
+### MCC and CCD0 summary tree comparison (Optional)
+
+Now, compare the figures for MCC and CCD0 summary trees. Can you see some differences?
+
+One of the CCD0 summary method advantages is that it can evaluate tree topologies that were not sampled during the MCMC. This is why it usually performs better on high-entropy (uncertain, spread out) tree posterior. Knowing this, what observations can you make about our sample?
 
 <!--[Very useful final notes from Tim](https://github.com/CompEvol/MultiTypeTree/wiki/Beginner%27s-Tutorial-%28short-version%29#final-notes)-->
 
