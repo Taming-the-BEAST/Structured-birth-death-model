@@ -1,10 +1,21 @@
 ---
 author: Denise Kühnert, Jūlija Pečerska
-level: Professional
 title: Structured birth-death model
 subtitle: Population structure using the multi-type birth-death model
-beastversion: 2.7.4
 tracerversion: 1.7.2
+beastversion_tutorial: 2.7.4
+workflow: Advanced analysis
+status: current
+keywords:
+- birth-death
+- population structure
+- migration
+packages:
+- bdmm
+domains:
+- phylogeography
+- epidemiology
+beastversion_package: '2.7'
 ---
 
 
